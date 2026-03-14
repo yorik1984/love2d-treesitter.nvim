@@ -1,4 +1,4 @@
-<h1 align="center">♡&nbsp;&nbsp; LÖVE [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter)&nbsp;&nbsp;♡</h1>
+<h1 align="center">♡&nbsp;&nbsp; <a href="https://love2d.org">LÖVE</a> <a href="https://github.com/nvim-treesitter/nvim-treesitter">Treesitter</a>&nbsp;&nbsp;♡</h1>
 
 [![Generate love2d-treesitter](https://github.com/yorik1984/love2d-treesitter/actions/workflows/update-love-api.yml/badge.svg)](https://github.com/yorik1984/love2d-treesitter/actions/workflows/update-love-api.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yorik1984/love2d-treesitter/blob/main/LICENSE)
