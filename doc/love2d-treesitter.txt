@@ -1,0 +1,252 @@
+*love2d-treesitter*                              LÖVE Treesitter Configuration
+
+                               o  o                    ~
+                      ╭─╮    ╭──────╮╭─╮    ╭─╮╭─────╮ ~
+                      │ │    │ ╭──╮ ││ │    │ ││ ╭───╯ ~
+                      │ │    │ │  │ │╰╮╰╮  ╭╯╭╯│ ╰───╮ ~
+                      │ │    │ │  │ │ ╰╮╰╮╭╯╭╯ │ ╭───╯ ~
+                      │ ╰───╮│ ╰──╯ │  ╰╮╰╯╭╯  │ ╰───╮ ~
+                      ╰─────╯╰──────╯   ╰──╯   ╰─────╯ ~
+                The highlighting solution for Neovim with LÖVE.
+
+Neovim syntax highlighting for LÖVE (http://love2d.org)
+with |treesitter| support.
+
+Plugin highlights LÖVE functions, such as `love.udpate`,
+`love.graphics.rectangle`, and more. It also highlights
+`conf.lua` flags, such as `t.console`, `t.window.width`, etc.
+
+It is generated from https://github.com/love2d-community/love-api,
+so any discrepancies should be reported there.
+
+==============================================================================
+CONTENTS                                         *love2d-treesitter-contents*
+
+    1. Installation..........................|love2d-treesitter-installation|
+    2. Settings..............................|love2d-treesitter-settings|
+    3. Commands..............................|love2d-treesitter-commands|
+    4. Keybindings...........................|love2d-treesitter-keybindings|
+    5. Rebuilding the API....................|love2d-treesitter-build|
+    6. Credits...............................|love2d-treesitter-credits|
+
+==============================================================================
+1. INSTALLATION                              *love2d-treesitter-installation*
+
+LAZY.NVIM ~
+>lua
+    require("lazy").setup({
+        "yorik1984/love2d-treesitter.nvim",
+        ft = "lua",
+        opts = {},
+    })
+<
+
+==============================================================================
+2. SETTINGS                                      *love2d-treesitter-settings*
+
+>lua
+    ---@alias LoveTreesitterStyleType string
+    ---| '"bold"'
+    ---| '"italic"'
+    ---| '"underline"'
+    ---| '"bold,italic"'
+    ---| '"bold,underline"'
+    ---| '"italic,underline"'
+    ---| '"NONE"'
+
+    ---@class LoveTreesitterStyle
+    ---@field love LoveTreesitterStyleType Style for 'love' global variable
+    ---@field module LoveTreesitterStyleType Style for LÖVE modules
+    ---@field type LoveTreesitterStyleType Style for LÖVE types/objects
+    ---@field dot LoveTreesitterStyleType Style for LÖVE dot and colon operator
+    ---@field func LoveTreesitterStyleType Style for LÖVE functions
+    ---@field method LoveTreesitterStyleType Style for LÖVE methods
+    ---@field callback LoveTreesitterStyleType Style for LÖVE callbacks (e.g., love.load)
+    ---@field conf LoveTreesitterStyleType Style for LÖVE configuration (love.conf)
+
+    ---@class LoveTreesitterColors
+    ---@field LOVElove string? HEX color for 'love' global variable
+    ---@field LOVEmodule string? HEX color for LÖVE modules
+    ---@field LOVEtype string? HEX color for LÖVE types/objects
+    ---@field LOVEdot string? HEX color for LÖVE dot and colon operator
+    ---@field LOVEfunction string? HEX color for LÖVE functions
+    ---@field LOVEmethod string? HEX color for LÖVE methods
+    ---@field LOVEcallback string? HEX color for LÖVE callbacks
+    ---@field LOVEconf string? HEX color for LÖVE configuration
+
+    ---@class LoveTreesitterConfig
+    ---@field enable_on_start boolean Whether to enable highlighting automatically on startup
+    ---@field notifications boolean Whether to enable notifications
+    ---@field style LoveTreesitterStyle Custom font styles (supports combinations like "bold,italic")
+    ---@field colors LoveTreesitterColors Optional table to override default HEX colors
+    opts = {
+        enable_on_start = true,
+        notifications = true,
+        style = {
+            love     = "bold",
+            module   = "NONE",
+            type     = "NONE",
+            dot      = "NONE",
+            func     = "NONE",
+            method   = "NONE",
+            callback = "NONE",
+            conf     = "NONE",
+        },
+        colors = {
+            LOVElove     = nil, -- Example: "#E54D95"
+            LOVEmodule   = nil,
+            LOVEtype     = nil,
+            LOVEdot      = nil,
+            LOVEfunction = nil,
+            LOVEmethod   = nil,
+            LOVEcallback = nil,
+            LOVEconf     = nil,
+        },
+    }
+<
+
+NOTE:
+Add configuration for enhanced LÖVE development with  built-in API docs and LÖVE-specific features
+
+>lua
+    require("lazy").setup({
+        "yorik1984/love2d-treesitter.nvim",
+        dependencies = {
+            { "yorik1984/love2d-docs.nvim" }, -- Built-in LÖVE documentation
+            { "S1M0N38/love2d.nvim" },        -- A simple Neovim plugin to build games with LÖVE
+        },
+        ft = "lua",
+        opts = {
+            enable_on_start = false,
+            ...
+        },
+        config = function(_, opts)
+            require("love2d-treesitter").setup(opts)
+
+            -- Autodetect LÖVE project
+            local group = vim.api.nvim_create_augroup("Love2DAutoStart", { clear = true })
+            vim.api.nvim_create_autocmd({ "VimEnter", "BufReadPost" }, {
+                group = group,
+                pattern = { "*.lua" },
+                callback = function()
+                    local configModule = require("love2d-treesitter.config")
+                    configModule.setup(opts)
+                    local config = configModule.config
+                    config.enable_on_start = true
+
+                    local ok, love2d = pcall(require, "love2d")
+                    if ok and type(love2d.is_love2d_project) == "function" then
+                        if love2d.is_love2d_project() then
+                            require("love2d-treesitter.util").load(config)
+                        end
+                    end
+                end,
+            })
+        end,
+        })
+<
+
+Configure Treesitter styles using the following defaults:
+
+Highlight Group                     HEX Color   Variable        Style ~
+@variable.global.love.lua           #E54D95     LOVElove        bold
+@module.bulitin.love.lua            #E54D95     LOVEmodule      NONE
+@type.love.lua                      #E54D95     LOVEtype        NONE
+@punctuation.dot.love.lua           #E54D95     LOVEdot         NONE
+@function.love.lua                  #2FA8DC     LOVEfunction    NONE
+@function.method.love.lua           #2FA8DC     LOVEmethod      NONE
+@function.call.love.callback.lua    #2FA8DC     LOVEcallback    NONE
+@function.call.love.conf.lua        #2FA8DC     LOVEconf        NONE
+
+==============================================================================
+3. COMMANDS                                      *love2d-treesitter-commands*
+┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Command             ┃ Description                                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+`LOVEHighlightEnable`    Enable LÖVE highlighting.
+`LOVEHighlightDisable`   Disable LÖVE highlighting.
+`LOVEHighlightToggle`    Toggle highlighting state.
+
+==============================================================================
+4. KEYBINDINGS                                *love2d-treesitter-keybindings*
+
+RECOMMENDED KEYBINDINGS ~
+Example configuration with |lazy.nvim|:
+
+>lua
+    {
+        "yorik1984/love2d-treesitter.nvim",
+        keys = {
+            {
+                "<leader>Lt",
+                "<cmd>LOVEHighlightToggle<cr>",
+                ft = "lua",
+                desc = "Toggle LÖVE Highlights",
+            },
+            {
+                "<leader>Le",
+                "<cmd>LOVEHighlightEnable<cr>",
+                ft = "lua",
+                desc = "Enable LÖVE Highlights",
+            },
+            {
+                "<leader>Ld",
+                "<cmd>LOVEHighlightDisable<cr>",
+                ft = "lua",
+                desc = "Disable LÖVE Highlights",
+            },
+        },
+        opts = {
+            ...
+        },
+    },
+<
+
+Or nvim api mappings for LÖVE Highlights (Lua files only)
+>lua
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "lua",
+        callback = function()
+            vim.keymap.set(
+                "n",
+                "<leader>Lt",
+                "<cmd>LOVEHighlightToggle<cr>",
+                { buffer = true, desc = "Toggle LÖVE Highlights" }
+            )
+            vim.keymap.set(
+                "n",
+                "<leader>Le",
+                "<cmd>LOVEHighlightEnable<cr>",
+                { buffer = true, desc = "Enable LÖVE Highlights" }
+            )
+            vim.keymap.set(
+                "n",
+                "<leader>Ld",
+                "<cmd>LOVEHighlightDisable<cr>",
+                { buffer = true, desc = "Disable LÖVE Highlights" }
+            )
+        end,
+    })
+<
+
+==============================================================================
+6. REBUILDING THE API                               *love2d-treesitter-build*
+
+If you wish to re-build the API files from source:
+1. Ensure `git` and `lua` are available in your PATH.
+2. Run `build/gen.bat` (Windows) or `build/gen.sh` (Linux/Mac).
+
+See more in `README.md`
+
+==============================================================================
+7. CREDITS                                        *love2d-treesitter-credits*
+
+Original Author: ~
+    Davis Claiborne (https://github.com/davisdude)
+                    (https://github.com/davisdude/vim-love-docs)
+
+Current Maintainer: ~
+    yorik1984 (https://github.com/yorik1984)
+
+==============================================================================
+vim:tw=78:ts=4:ft=help:norl:

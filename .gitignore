@@ -1,0 +1,4 @@
+*.db
+/src/love-api/
+/src/doc/love-api/
+/src/syntax/love-api/
