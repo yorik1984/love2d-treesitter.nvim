@@ -296,7 +296,8 @@ Creates `---@class` and `---@alias` definitions for perfect autocompletion and t
     - **🧠 Smart Type System:** Intelligently handles type unions, plural forms (e.g., `tables` → `table[]`), optional parameters, and function overloads.
     - **📌 Version Branches:** Includes branches for specific LÖVE versions (e.g., `11.5`), so you can use annotations that match your project.
 
-    >[!TIP] Use this definition alongside **love2d-treesitter** for the ultimate LÖVE development setup — get beautiful syntax highlighting in your editor and intelligent IDE autocompletion from these LuaCATS annotations.
+> [!TIP]
+> Use this definition alongside **love2d-treesitter** for the ultimate LÖVE development setup — get beautiful syntax highlighting in your editor and intelligent IDE autocompletion from these LuaCATS annotations.
 
 + **[love2d-docs.nvim](https://github.com/yorik1984/love2d-docs.nvim)**<br>
 Is a comprehensive plugin for [Neovim](https://neovim.io/) and [Vim](https://www.vim.org/) that brings the entire [LÖVE](http://love2d.org) game framework documentation right into your editor.
