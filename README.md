@@ -1,7 +1,7 @@
 <h1 align="center">♡&nbsp;&nbsp; <a href="https://love2d.org">LÖVE</a> <a href="https://github.com/nvim-treesitter/nvim-treesitter">Treesitter</a>&nbsp;&nbsp;♡</h1>
 
-[![Generate love2d-treesitter](https://github.com/yorik1984/love2d-treesitter/actions/workflows/update-love-api.yml/badge.svg)](https://github.com/yorik1984/love2d-treesitter/actions/workflows/update-love-api.yml)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yorik1984/love2d-treesitter/blob/main/LICENSE)
+[![Generate love2d-treesitter](https://github.com/yorik1984/love2d-treesitter.nvim/actions/workflows/update-love-api.yml/badge.svg)](https://github.com/yorik1984/love2d-treesitter.nvim/actions/workflows/update-love-api.yml)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yorik1984/love2d-treesitter.nvim/blob/main/LICENSE)
 [![Lua](https://img.shields.io/badge/Lua-5.1-blue.svg)](https://www.lua.org/)
 [![LÖVE API](https://img.shields.io/badge/L%C3%96VE_API-11.5-EA316E.svg)](https://github.com/love2d-community/love-api)
 [![Neovim](https://img.shields.io/badge/Neovim-0.5+-green.svg)](https://neovim.io/)
