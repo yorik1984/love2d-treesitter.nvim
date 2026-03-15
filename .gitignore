@@ -1,3 +1,3 @@
 *.db
-/build/love-api/
-/build/syntax/love-api/
+build/love-api/
+build/syntax/love-api/
