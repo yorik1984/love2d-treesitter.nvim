@@ -24,11 +24,9 @@ love.graphics.rectangle("fill", 100, 100, 200, 200)
 
 -- Callbacks are specially highlighted
 function love.load()
-    -- 'load' stands out with LOVEcallback highlight
 end
 
 -- Configuration flags in conf.lua get special treatment
-
 -- work with treesitter too
 -- love.conf = function(t)
 function love.conf(t)
