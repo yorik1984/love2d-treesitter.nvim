@@ -25,7 +25,6 @@ rd /q /s love-api
 
 REM Copy love-api to the specified directories
 xcopy /e /q /y love-api syntax\love-api\
-xcopy /e /q /y love-api doc\love-api\
 
 REM Run the generation scripts
 call syntax\gen.bat
