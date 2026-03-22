@@ -133,6 +133,7 @@ local scm_content       = [[
 ]]
 
 scm_content             = scm_content .. [[
+; `love`
 (function_call
   name: (dot_index_expression
     table: (identifier) @variable.global.love
@@ -159,6 +160,11 @@ scm_content             = scm_content .. [[
   (#eq? @variable.global.love "love")
   (#set! priority 150))
 
+(return_statement
+  (expression_list
+    (identifier) @variable.global.love)
+  (#eq? @variable.global.love "love")
+  (#set! priority 150))
 ]]
 
 if scm_func_str ~= "" then
@@ -220,8 +226,14 @@ if scm_types_str ~= "" then
     "^(%s)$")
   (#set! priority 150))
 
+(assignment_statement
+  (variable_list
+    name: (identifier) @type.love)
+  (#match? @type.love "^(%s)$")
+  (#set! priority 150))
+
 ; Type's methods
-]], scm_types_str)
+]], scm_types_str, scm_types_str)
 
     for type_name, methods in pairs(scm_type_methods) do
         if #methods > 0 then
