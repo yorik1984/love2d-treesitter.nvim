@@ -405,7 +405,7 @@ love.window.updateMode()
 
 -- === TYPES & METHODS ===
 -- Type: love.Data
-local Data = {}
+Data = {}
 Data:clone()
 Data:getFFIPointer()
 Data:getPointer()
@@ -413,13 +413,13 @@ Data:getSize()
 Data:getString()
 
 -- Type: love.Object
-local Object = {}
+Object = {}
 Object:release()
 Object:type()
 Object:typeOf()
 
 -- Type: love.video.VideoStream
-local VideoStream = {}
+VideoStream = {}
 VideoStream:getFilename()
 VideoStream:isPlaying()
 VideoStream:pause()
@@ -429,7 +429,7 @@ VideoStream:seek()
 VideoStream:tell()
 
 -- Type: love.thread.Channel
-local Channel = {}
+Channel = {}
 Channel:clear()
 Channel:demand()
 Channel:getCount()
@@ -441,14 +441,14 @@ Channel:push()
 Channel:supply()
 
 -- Type: love.thread.Thread
-local Thread = {}
+Thread = {}
 Thread:getError()
 Thread:isRunning()
 Thread:start()
 Thread:wait()
 
 -- Type: love.sound.Decoder
-local Decoder = {}
+Decoder = {}
 Decoder:clone()
 Decoder:decode()
 Decoder:getBitDepth()
@@ -458,7 +458,7 @@ Decoder:getSampleRate()
 Decoder:seek()
 
 -- Type: love.sound.SoundData
-local SoundData = {}
+SoundData = {}
 SoundData:getBitDepth()
 SoundData:getChannelCount()
 SoundData:getDuration()
@@ -468,7 +468,7 @@ SoundData:getSampleRate()
 SoundData:setSample()
 
 -- Type: love.physics.Body
-local Body = {}
+Body = {}
 Body:applyAngularImpulse()
 Body:applyForce()
 Body:applyLinearImpulse()
@@ -533,7 +533,7 @@ Body:setX()
 Body:setY()
 
 -- Type: love.physics.ChainShape
-local ChainShape = {}
+ChainShape = {}
 ChainShape:getChildEdge()
 ChainShape:getNextVertex()
 ChainShape:getPoint()
@@ -544,14 +544,14 @@ ChainShape:setNextVertex()
 ChainShape:setPreviousVertex()
 
 -- Type: love.physics.CircleShape
-local CircleShape = {}
+CircleShape = {}
 CircleShape:getPoint()
 CircleShape:getRadius()
 CircleShape:setPoint()
 CircleShape:setRadius()
 
 -- Type: love.physics.Contact
-local Contact = {}
+Contact = {}
 Contact:getChildren()
 Contact:getFixtures()
 Contact:getFriction()
@@ -567,7 +567,7 @@ Contact:setFriction()
 Contact:setRestitution()
 
 -- Type: love.physics.DistanceJoint
-local DistanceJoint = {}
+DistanceJoint = {}
 DistanceJoint:getDampingRatio()
 DistanceJoint:getFrequency()
 DistanceJoint:getLength()
@@ -576,7 +576,7 @@ DistanceJoint:setFrequency()
 DistanceJoint:setLength()
 
 -- Type: love.physics.EdgeShape
-local EdgeShape = {}
+EdgeShape = {}
 EdgeShape:getNextVertex()
 EdgeShape:getPoints()
 EdgeShape:getPreviousVertex()
@@ -584,7 +584,7 @@ EdgeShape:setNextVertex()
 EdgeShape:setPreviousVertex()
 
 -- Type: love.physics.Fixture
-local Fixture = {}
+Fixture = {}
 Fixture:destroy()
 Fixture:getBody()
 Fixture:getBoundingBox()
@@ -613,20 +613,20 @@ Fixture:setUserData()
 Fixture:testPoint()
 
 -- Type: love.physics.FrictionJoint
-local FrictionJoint = {}
+FrictionJoint = {}
 FrictionJoint:getMaxForce()
 FrictionJoint:getMaxTorque()
 FrictionJoint:setMaxForce()
 FrictionJoint:setMaxTorque()
 
 -- Type: love.physics.GearJoint
-local GearJoint = {}
+GearJoint = {}
 GearJoint:getJoints()
 GearJoint:getRatio()
 GearJoint:setRatio()
 
 -- Type: love.physics.Joint
-local Joint = {}
+Joint = {}
 Joint:destroy()
 Joint:getAnchors()
 Joint:getBodies()
@@ -639,14 +639,14 @@ Joint:isDestroyed()
 Joint:setUserData()
 
 -- Type: love.physics.MotorJoint
-local MotorJoint = {}
+MotorJoint = {}
 MotorJoint:getAngularOffset()
 MotorJoint:getLinearOffset()
 MotorJoint:setAngularOffset()
 MotorJoint:setLinearOffset()
 
 -- Type: love.physics.MouseJoint
-local MouseJoint = {}
+MouseJoint = {}
 MouseJoint:getDampingRatio()
 MouseJoint:getFrequency()
 MouseJoint:getMaxForce()
@@ -657,11 +657,11 @@ MouseJoint:setMaxForce()
 MouseJoint:setTarget()
 
 -- Type: love.physics.PolygonShape
-local PolygonShape = {}
+PolygonShape = {}
 PolygonShape:getPoints()
 
 -- Type: love.physics.PrismaticJoint
-local PrismaticJoint = {}
+PrismaticJoint = {}
 PrismaticJoint:areLimitsEnabled()
 PrismaticJoint:getAxis()
 PrismaticJoint:getJointSpeed()
@@ -683,7 +683,7 @@ PrismaticJoint:setMotorSpeed()
 PrismaticJoint:setUpperLimit()
 
 -- Type: love.physics.PulleyJoint
-local PulleyJoint = {}
+PulleyJoint = {}
 PulleyJoint:getConstant()
 PulleyJoint:getGroundAnchors()
 PulleyJoint:getLengthA()
@@ -695,7 +695,7 @@ PulleyJoint:setMaxLengths()
 PulleyJoint:setRatio()
 
 -- Type: love.physics.RevoluteJoint
-local RevoluteJoint = {}
+RevoluteJoint = {}
 RevoluteJoint:areLimitsEnabled()
 RevoluteJoint:getJointAngle()
 RevoluteJoint:getJointSpeed()
@@ -717,12 +717,12 @@ RevoluteJoint:setMotorSpeed()
 RevoluteJoint:setUpperLimit()
 
 -- Type: love.physics.RopeJoint
-local RopeJoint = {}
+RopeJoint = {}
 RopeJoint:getMaxLength()
 RopeJoint:setMaxLength()
 
 -- Type: love.physics.Shape
-local Shape = {}
+Shape = {}
 Shape:computeAABB()
 Shape:computeMass()
 Shape:getChildCount()
@@ -732,7 +732,7 @@ Shape:rayCast()
 Shape:testPoint()
 
 -- Type: love.physics.WeldJoint
-local WeldJoint = {}
+WeldJoint = {}
 WeldJoint:getDampingRatio()
 WeldJoint:getFrequency()
 WeldJoint:getReferenceAngle()
@@ -740,7 +740,7 @@ WeldJoint:setDampingRatio()
 WeldJoint:setFrequency()
 
 -- Type: love.physics.WheelJoint
-local WheelJoint = {}
+WheelJoint = {}
 WheelJoint:getAxis()
 WheelJoint:getJointSpeed()
 WheelJoint:getJointTranslation()
@@ -757,7 +757,7 @@ WheelJoint:setSpringDampingRatio()
 WheelJoint:setSpringFrequency()
 
 -- Type: love.physics.World
-local World = {}
+World = {}
 World:destroy()
 World:getBodies()
 World:getBodyCount()
@@ -781,11 +781,11 @@ World:translateOrigin()
 World:update()
 
 -- Type: love.mouse.Cursor
-local Cursor = {}
+Cursor = {}
 Cursor:getType()
 
 -- Type: love.math.BezierCurve
-local BezierCurve = {}
+BezierCurve = {}
 BezierCurve:evaluate()
 BezierCurve:getControlPoint()
 BezierCurve:getControlPointCount()
@@ -802,7 +802,7 @@ BezierCurve:setControlPoint()
 BezierCurve:translate()
 
 -- Type: love.math.RandomGenerator
-local RandomGenerator = {}
+RandomGenerator = {}
 RandomGenerator:getSeed()
 RandomGenerator:getState()
 RandomGenerator:random()
@@ -811,7 +811,7 @@ RandomGenerator:setSeed()
 RandomGenerator:setState()
 
 -- Type: love.math.Transform
-local Transform = {}
+Transform = {}
 Transform:apply()
 Transform:clone()
 Transform:getMatrix()
@@ -828,7 +828,7 @@ Transform:transformPoint()
 Transform:translate()
 
 -- Type: love.joystick.Joystick
-local Joystick = {}
+Joystick = {}
 Joystick:getAxes()
 Joystick:getAxis()
 Joystick:getAxisCount()
@@ -851,7 +851,7 @@ Joystick:isVibrationSupported()
 Joystick:setVibration()
 
 -- Type: love.image.CompressedImageData
-local CompressedImageData = {}
+CompressedImageData = {}
 CompressedImageData:getDimensions()
 CompressedImageData:getFormat()
 CompressedImageData:getHeight()
@@ -859,7 +859,7 @@ CompressedImageData:getMipmapCount()
 CompressedImageData:getWidth()
 
 -- Type: love.image.ImageData
-local ImageData = {}
+ImageData = {}
 ImageData:encode()
 ImageData:getDimensions()
 ImageData:getHeight()
@@ -871,7 +871,7 @@ ImageData:setPixel()
 ImageData:getFormat()
 
 -- Type: love.graphics.Canvas
-local Canvas = {}
+Canvas = {}
 Canvas:generateMipmaps()
 Canvas:getMSAA()
 Canvas:getMipmapMode()
@@ -879,10 +879,10 @@ Canvas:newImageData()
 Canvas:renderTo()
 
 -- Type: love.graphics.Drawable
-local Drawable = {}
+Drawable = {}
 
 -- Type: love.graphics.Font
-local Font = {}
+Font = {}
 Font:getAscent()
 Font:getBaseline()
 Font:getDPIScale()
@@ -899,13 +899,13 @@ Font:setFilter()
 Font:setLineHeight()
 
 -- Type: love.graphics.Image
-local Image = {}
+Image = {}
 Image:isCompressed()
 Image:isFormatLinear()
 Image:replacePixels()
 
 -- Type: love.graphics.Mesh
-local Mesh = {}
+Mesh = {}
 Mesh:attachAttribute()
 Mesh:detachAttribute()
 Mesh:flush()
@@ -928,7 +928,7 @@ Mesh:setVertexMap()
 Mesh:setVertices()
 
 -- Type: love.graphics.ParticleSystem
-local ParticleSystem = {}
+ParticleSystem = {}
 ParticleSystem:clone()
 ParticleSystem:emit()
 ParticleSystem:getBufferSize()
@@ -991,20 +991,20 @@ ParticleSystem:stop()
 ParticleSystem:update()
 
 -- Type: love.graphics.Quad
-local Quad = {}
+Quad = {}
 Quad:getTextureDimensions()
 Quad:getViewport()
 Quad:setViewport()
 
 -- Type: love.graphics.Shader
-local Shader = {}
+Shader = {}
 Shader:getWarnings()
 Shader:hasUniform()
 Shader:send()
 Shader:sendColor()
 
 -- Type: love.graphics.SpriteBatch
-local SpriteBatch = {}
+SpriteBatch = {}
 SpriteBatch:add()
 SpriteBatch:addLayer()
 SpriteBatch:attachAttribute()
@@ -1021,7 +1021,7 @@ SpriteBatch:setLayer()
 SpriteBatch:setTexture()
 
 -- Type: love.graphics.Text
-local Text = {}
+Text = {}
 Text:add()
 Text:addf()
 Text:clear()
@@ -1034,7 +1034,7 @@ Text:setFont()
 Text:setf()
 
 -- Type: love.graphics.Texture
-local Texture = {}
+Texture = {}
 Texture:getDPIScale()
 Texture:getDepth()
 Texture:getDepthSampleMode()
@@ -1058,7 +1058,7 @@ Texture:setMipmapFilter()
 Texture:setWrap()
 
 -- Type: love.graphics.Video
-local Video = {}
+Video = {}
 Video:getDimensions()
 Video:getFilter()
 Video:getHeight()
@@ -1075,7 +1075,7 @@ Video:setSource()
 Video:tell()
 
 -- Type: love.font.GlyphData
-local GlyphData = {}
+GlyphData = {}
 GlyphData:getAdvance()
 GlyphData:getBearing()
 GlyphData:getBoundingBox()
@@ -1087,7 +1087,7 @@ GlyphData:getHeight()
 GlyphData:getWidth()
 
 -- Type: love.font.Rasterizer
-local Rasterizer = {}
+Rasterizer = {}
 Rasterizer:getAdvance()
 Rasterizer:getAscent()
 Rasterizer:getDescent()
@@ -1098,10 +1098,10 @@ Rasterizer:getLineHeight()
 Rasterizer:hasGlyphs()
 
 -- Type: love.filesystem.DroppedFile
-local DroppedFile = {}
+DroppedFile = {}
 
 -- Type: love.filesystem.File
-local File = {}
+File = {}
 File:close()
 File:flush()
 File:getBuffer()
@@ -1119,19 +1119,19 @@ File:tell()
 File:write()
 
 -- Type: love.filesystem.FileData
-local FileData = {}
+FileData = {}
 FileData:getExtension()
 FileData:getFilename()
 
 -- Type: love.data.ByteData
-local ByteData = {}
+ByteData = {}
 
 -- Type: love.data.CompressedData
-local CompressedData = {}
+CompressedData = {}
 CompressedData:getFormat()
 
 -- Type: love.audio.RecordingDevice
-local RecordingDevice = {}
+RecordingDevice = {}
 RecordingDevice:getBitDepth()
 RecordingDevice:getChannelCount()
 RecordingDevice:getData()
@@ -1143,7 +1143,7 @@ RecordingDevice:start()
 RecordingDevice:stop()
 
 -- Type: love.audio.Source
-local Source = {}
+Source = {}
 Source:clone()
 Source:getActiveEffects()
 Source:getAirAbsorption()

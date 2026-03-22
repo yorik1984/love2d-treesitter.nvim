@@ -8,6 +8,7 @@
 ; If you want to change the syntax, edit that file and run `build/gen.dat(sh)`
 ; it to generate a new version of this file.
 
+; `love`
 (function_call
   name: (dot_index_expression
     table: (identifier) @variable.global.love
@@ -34,6 +35,11 @@
   (#eq? @variable.global.love "love")
   (#set! priority 150))
 
+(return_statement
+  (expression_list
+    (identifier) @variable.global.love)
+  (#eq? @variable.global.love "love")
+  (#set! priority 150))
 ; Functions
 ((dot_index_expression
   table: (identifier) @_love
@@ -271,6 +277,12 @@
   (#eq? @_love "love")
   (#match? @type.love
     "^(Data|Object|VideoStream|Channel|Thread|Decoder|SoundData|Body|ChainShape|CircleShape|Contact|DistanceJoint|EdgeShape|Fixture|FrictionJoint|GearJoint|Joint|MotorJoint|MouseJoint|PolygonShape|PrismaticJoint|PulleyJoint|RevoluteJoint|RopeJoint|Shape|WeldJoint|WheelJoint|World|Cursor|BezierCurve|RandomGenerator|Transform|Joystick|CompressedImageData|ImageData|Canvas|Drawable|Font|Image|Mesh|ParticleSystem|Quad|Shader|SpriteBatch|Text|Texture|Video|GlyphData|Rasterizer|DroppedFile|File|FileData|ByteData|CompressedData|RecordingDevice|Source)$")
+  (#set! priority 150))
+
+(assignment_statement
+  (variable_list
+    name: (identifier) @type.love)
+  (#match? @type.love "^(Data|Object|VideoStream|Channel|Thread|Decoder|SoundData|Body|ChainShape|CircleShape|Contact|DistanceJoint|EdgeShape|Fixture|FrictionJoint|GearJoint|Joint|MotorJoint|MouseJoint|PolygonShape|PrismaticJoint|PulleyJoint|RevoluteJoint|RopeJoint|Shape|WeldJoint|WheelJoint|World|Cursor|BezierCurve|RandomGenerator|Transform|Joystick|CompressedImageData|ImageData|Canvas|Drawable|Font|Image|Mesh|ParticleSystem|Quad|Shader|SpriteBatch|Text|Texture|Video|GlyphData|Rasterizer|DroppedFile|File|FileData|ByteData|CompressedData|RecordingDevice|Source)$")
   (#set! priority 150))
 
 ; Type's methods
