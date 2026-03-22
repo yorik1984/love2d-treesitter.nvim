@@ -87,7 +87,7 @@ local function generate_test_file(tab)
                 table.insert(lines, "-- Type: " .. fullName)
 
                 local obj_name = typ.name
-                table.insert(lines, "local " .. obj_name .. " = {}")
+                table.insert(lines, obj_name .. " = {}")
 
                 for _, method in ipairs(typ.functions or {}) do
                     table.insert(lines, string.format("%s:%s()", obj_name, method.name))
