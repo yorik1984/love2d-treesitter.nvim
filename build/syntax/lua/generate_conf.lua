@@ -46,17 +46,7 @@ local function generate_pure_console_conf(tab)
 
         for _, item in ipairs(to_process) do
             local name, d = item.name, item.d
-            local val = "nil"
-
-            -- Logic for version, booleans and strings
-            if name == "t.version" then
-                val = '"' .. (tab.version or "11.5") .. '"'
-            elseif d.type == "boolean" then
-                val = "true"
-            elseif d.type == "string" then
-                local first = d.description:match('"(%w+)"')
-                val = first and ('"' .. first .. '"') or '"default"'
-            end
+            local val = d.default
 
             -- Clean description and format
             local desc = d.description:gsub("[\r\n]+", " "):gsub("%s+", " ")
