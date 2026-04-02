@@ -58,6 +58,7 @@ end
 ```lua
 require("lazy").setup({
     "yorik1984/love2d-treesitter.nvim",
+    branch = "main", -- default or `branch = "11.5"` for special API version
     ft = "lua",
     opts = {},
 })
