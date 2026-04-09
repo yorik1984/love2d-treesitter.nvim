@@ -280,9 +280,9 @@ build/gen.bat
 ### [newpaper.nvim](https://github.com/yorik1984/newpaper.nvim)
 
 <div align="center">
-  <img src="pics/screen1.png" alt="Neovim screenshot 1" width="80%">
+  <img src="https://raw.githubusercontent.com/yorik1984/love2d-treesitter.nvim/main/pics/screen1.png" alt="Neovim screenshot 1" width="80%">
   <br><br>
-  <img src="pics/screen2.png" alt="Neovim screenshot 2" width="80%">
+  <img src="https://raw.githubusercontent.com/yorik1984/love2d-treesitter.nvim/main/pics/screen2.png" alt="Neovim screenshot 2" width="80%">
 </div>
 
 ## 📚 References & Related Projects
