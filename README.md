@@ -46,9 +46,9 @@ end
   - [🤖 Automated Workflow](#-automated-workflow)
   - [✋ Manual Generation (Optional)](#-manual-generation-optional)
 - [🎨 Screenshots](#-screenshots)
-- [‼️ Known limitation](#-known-limitation)
+- [🚨 Known limitation](#-known-limitation)
 - [📚 References & Related Projects](#-references--related-projects)
-- [©️ Credits](#-credits)
+- [🔑 Credits](#-credits)
 
 <!-- /TOC -->
 
@@ -286,7 +286,7 @@ build/gen.bat
   <img src="https://raw.githubusercontent.com/yorik1984/love2d-treesitter.nvim/main/pics/screen2.png" alt="Neovim screenshot 2" width="80%">
 </div>
 
-## ‼️ Known limitation
+## 🚨 Known limitation
 
 ### Same Methods for Different Types in LÖVE
 
@@ -362,7 +362,7 @@ Plugin for [Vim](https://www.vim.org/) that highlight [LÖVE](http://love2d.org)
     - 🎨 **Syntax Highlighting** — Colors LÖVE functions, modules, types, and callbacks
     - 🔧 **Customizable** — Flexible styling options for Vim
 
-## ©️ Credits
+## 🔑 Credits
 
 + Original Author: [Davis Claiborne](https://github.com/davisdude) — Created and maintained the original [vim-love-docs](https://github.com/davisdude/vim-love-docs)
 + Powered by: [love-api](https://github.com/love2d-community/love-api) — Community-maintained LÖVE API specification
