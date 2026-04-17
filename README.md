@@ -105,7 +105,7 @@ require("love2d-treesitter").setup({
     enable_on_start = true,
     notifications = true,
     style = {
-        love     = "bold",      -- 'love' global variable
+        love     = "bold",      -- `love` global variable
         module   = "NONE",      -- LÖVE modules (graphics, audio, etc.)
         type     = "NONE",      -- LÖVE types/objects
         dot      = "NONE",      -- Dot and colon operators
@@ -188,11 +188,11 @@ Configure Treesitter styles using the following defaults:
 
 The plugin provides the following user commands to manage highlighting states.
 
-| Command                 | Description                                              |
-| ----------------------- | -------------------------------------------------------- |
+| Command                 | Description                                            |
+| ----------------------- | ------------------------------------------------------ |
 | `:LOVEHighlightEnable`  | **Enables** LÖVE highlighting for the current session. |
 | `:LOVEHighlightDisable` | **Disables** LÖVE highlighting and resets colors.      |
-| `:LOVEHighlightToggle`  | **Toggles** the highlighting state (On/Off).             |
+| `:LOVEHighlightToggle`  | **Toggles** the highlighting state (On/Off).           |
 
 #### Recommended Keybindings
 
@@ -284,6 +284,60 @@ build/gen.bat
   <br><br>
   <img src="https://raw.githubusercontent.com/yorik1984/love2d-treesitter.nvim/main/pics/screen2.png" alt="Neovim screenshot 2" width="80%">
 </div>
+
+## ⚠️ Known limitation
+
+### Same Methods for Different Types in LÖVE
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/yorik1984/love2d-treesitter.nvim/main/pics/highlight-error.png" alt="Highlight error" width="80%">
+  <br>
+</div>
+
+```lua
+-- Text ✅
+local font  = love.graphics.newFont(12)
+local text1 = love.graphics.newText(font, "Hello")
+text1:getDimensions() -- ✅ Correct: Text has getDimensions()
+      ^^^^^^^^^^^^^^
+      └── @function.method.love.lua (highlight) - priority 150
+
+-- Texture (valid) ✅
+local texture1 = love.graphics.newImage("texture1.png")
+texture1:getDimensions() -- ✅ Correct: Texture has getDimensions()
+         ^^^^^^^^^^^^^^
+         └── @function.method.love.lua (highlight) - priority 150
+
+-- Texture (string) ⚠️
+local texture2 = "texture2.png"
+texture2:getDimensions() -- ⚠️ Highlighted, but LSP error
+         ^^^^^^^^^^^^^^
+         ├── @function.method.love.lua (highlight) - priority 150
+         └── 🔴 LSP Diagnostic: "undefined field `getDimensions`" (severity: ERROR)
+
+-- Texture (nil) ❌
+local texture3
+texture3:getDimensions() -- ❌ Highlighted, but error
+         ^^^^^^^^^^^^^^
+         └── @function.method.love.lua (highlight) - priority 150
+```
+
+> [!WARNING]
+> **Treesitter highlights the method by name, without checking the variable type!** <br>
+> This means the method will be highlighted **even if**:
+> - The variable is a `string`, `number`, or `nil`
+> - The type doesn't have this method
+> - The variable hasn't been defined yet
+
+```lua
+local something = "string"
+something:method()  -- Will highlight, but will cause an error!
+```
+
+> [!TIP]
+> Always rely on LSP diagnostics to check correctness.
+> Treesitter provides syntax highlighting only. It does not understand types or semantics.
+> LSP is responsible for type checking and error detection.
 
 ## 📚 References & Related Projects
 
