@@ -203,10 +203,10 @@ for module, functions in pairs(scm_modules) do
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "%s")
+  (#eq? @module.bulitin.love "%s")
   (#match? @function.love
     "^(%s)$")
   (#set! priority 150))
@@ -242,7 +242,12 @@ if scm_types_str ~= "" then
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression

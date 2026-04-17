@@ -1,3 +1,4 @@
 *.db
 build/love-api/
 build/syntax/love-api/
+kanban/
