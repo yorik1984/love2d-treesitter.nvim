@@ -64,10 +64,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "keyboard")
+  (#eq? @module.bulitin.love "keyboard")
   (#match? @function.love
     "^(getKeyFromScancode|getScancodeFromKey|hasKeyRepeat|hasScreenKeyboard|hasTextInput|isDown|isScancodeDown|setKeyRepeat|setTextInput)$")
   (#set! priority 150))
@@ -75,10 +75,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "window")
+  (#eq? @module.bulitin.love "window")
   (#match? @function.love
     "^(close|fromPixels|getDPIScale|getDesktopDimensions|getDisplayCount|getDisplayName|getDisplayOrientation|getFullscreen|getFullscreenModes|getIcon|getMode|getPosition|getSafeArea|getTitle|getVSync|hasFocus|hasMouseFocus|isDisplaySleepEnabled|isMaximized|isMinimized|isOpen|isVisible|maximize|minimize|requestAttention|restore|setDisplaySleepEnabled|setFullscreen|setIcon|setMode|setPosition|setTitle|setVSync|showMessageBox|toPixels|updateMode)$")
   (#set! priority 150))
@@ -86,10 +86,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "data")
+  (#eq? @module.bulitin.love "data")
   (#match? @function.love
     "^(compress|decode|decompress|encode|getPackedSize|hash|newByteData|newDataView|pack|unpack)$")
   (#set! priority 150))
@@ -97,10 +97,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "thread")
+  (#eq? @module.bulitin.love "thread")
   (#match? @function.love
     "^(getChannel|newChannel|newThread)$")
   (#set! priority 150))
@@ -108,10 +108,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "image")
+  (#eq? @module.bulitin.love "image")
   (#match? @function.love
     "^(isCompressed|newCompressedData|newImageData)$")
   (#set! priority 150))
@@ -119,10 +119,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "math")
+  (#eq? @module.bulitin.love "math")
   (#match? @function.love
     "^(colorFromBytes|colorToBytes|gammaToLinear|getRandomSeed|getRandomState|isConvex|linearToGamma|newBezierCurve|newRandomGenerator|newTransform|noise|random|randomNormal|setRandomSeed|setRandomState|triangulate)$")
   (#set! priority 150))
@@ -130,10 +130,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "sound")
+  (#eq? @module.bulitin.love "sound")
   (#match? @function.love
     "^(newDecoder|newSoundData)$")
   (#set! priority 150))
@@ -141,10 +141,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "joystick")
+  (#eq? @module.bulitin.love "joystick")
   (#match? @function.love
     "^(getGamepadMappingString|getJoystickCount|getJoysticks|loadGamepadMappings|saveGamepadMappings|setGamepadMapping)$")
   (#set! priority 150))
@@ -152,10 +152,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "touch")
+  (#eq? @module.bulitin.love "touch")
   (#match? @function.love
     "^(getPosition|getPressure|getTouches)$")
   (#set! priority 150))
@@ -163,10 +163,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "audio")
+  (#eq? @module.bulitin.love "audio")
   (#match? @function.love
     "^(getActiveEffects|getActiveSourceCount|getDistanceModel|getDopplerScale|getEffect|getMaxSceneEffects|getMaxSourceEffects|getOrientation|getPosition|getRecordingDevices|getVelocity|getVolume|isEffectsSupported|newQueueableSource|newSource|pause|play|setDistanceModel|setDopplerScale|setEffect|setMixWithSystem|setOrientation|setPosition|setVelocity|setVolume|stop)$")
   (#set! priority 150))
@@ -174,10 +174,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "physics")
+  (#eq? @module.bulitin.love "physics")
   (#match? @function.love
     "^(getDistance|getMeter|newBody|newChainShape|newCircleShape|newDistanceJoint|newEdgeShape|newFixture|newFrictionJoint|newGearJoint|newMotorJoint|newMouseJoint|newPolygonShape|newPrismaticJoint|newPulleyJoint|newRectangleShape|newRevoluteJoint|newRopeJoint|newWeldJoint|newWheelJoint|newWorld|setMeter)$")
   (#set! priority 150))
@@ -185,10 +185,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "event")
+  (#eq? @module.bulitin.love "event")
   (#match? @function.love
     "^(clear|poll|pump|push|quit|wait)$")
   (#set! priority 150))
@@ -196,10 +196,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "system")
+  (#eq? @module.bulitin.love "system")
   (#match? @function.love
     "^(getClipboardText|getOS|getPowerInfo|getProcessorCount|hasBackgroundMusic|openURL|setClipboardText|vibrate)$")
   (#set! priority 150))
@@ -207,10 +207,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "filesystem")
+  (#eq? @module.bulitin.love "filesystem")
   (#match? @function.love
     "^(append|areSymlinksEnabled|createDirectory|getAppdataDirectory|getCRequirePath|getDirectoryItems|getIdentity|getInfo|getRealDirectory|getRequirePath|getSaveDirectory|getSource|getSourceBaseDirectory|getUserDirectory|getWorkingDirectory|init|isFused|lines|load|mount|newFile|newFileData|read|remove|setCRequirePath|setIdentity|setRequirePath|setSource|setSymlinksEnabled|unmount|write)$")
   (#set! priority 150))
@@ -218,10 +218,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "graphics")
+  (#eq? @module.bulitin.love "graphics")
   (#match? @function.love
     "^(applyTransform|arc|captureScreenshot|circle|clear|discard|draw|drawInstanced|drawLayer|ellipse|flushBatch|getBackgroundColor|getBlendMode|getCanvas|getCanvasFormats|getColor|getColorMask|getDPIScale|getDefaultFilter|getDepthMode|getDimensions|getFont|getFrontFaceWinding|getHeight|getImageFormats|getLineJoin|getLineStyle|getLineWidth|getMeshCullMode|getPixelDimensions|getPixelHeight|getPixelWidth|getPointSize|getRendererInfo|getScissor|getShader|getStackDepth|getStats|getStencilTest|getSupported|getSystemLimits|getTextureTypes|getWidth|intersectScissor|inverseTransformPoint|isActive|isGammaCorrect|isWireframe|line|newArrayImage|newCanvas|newCubeImage|newFont|newImage|newImageFont|newMesh|newParticleSystem|newQuad|newShader|newSpriteBatch|newText|newVideo|newVolumeImage|origin|points|polygon|pop|present|print|printf|push|rectangle|replaceTransform|reset|rotate|scale|setBackgroundColor|setBlendMode|setCanvas|setColor|setColorMask|setDefaultFilter|setDepthMode|setFont|setFrontFaceWinding|setLineJoin|setLineStyle|setLineWidth|setMeshCullMode|setNewFont|setPointSize|setScissor|setShader|setStencilTest|setWireframe|shear|stencil|transformPoint|translate|validateShader)$")
   (#set! priority 150))
@@ -229,10 +229,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "timer")
+  (#eq? @module.bulitin.love "timer")
   (#match? @function.love
     "^(getAverageDelta|getDelta|getFPS|getTime|sleep|step)$")
   (#set! priority 150))
@@ -240,10 +240,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "mouse")
+  (#eq? @module.bulitin.love "mouse")
   (#match? @function.love
     "^(getCursor|getPosition|getRelativeMode|getSystemCursor|getX|getY|isCursorSupported|isDown|isGrabbed|isVisible|newCursor|setCursor|setGrabbed|setPosition|setRelativeMode|setVisible|setX|setY)$")
   (#set! priority 150))
@@ -251,10 +251,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "video")
+  (#eq? @module.bulitin.love "video")
   (#match? @function.love
     "^(newVideoStream)$")
   (#set! priority 150))
@@ -262,10 +262,10 @@
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @_love
-    field: (identifier) @_module)
+    field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
   (#eq? @_love "love")
-  (#eq? @_module "font")
+  (#eq? @module.bulitin.love "font")
   (#match? @function.love
     "^(newBMFontRasterizer|newGlyphData|newImageRasterizer|newRasterizer|newTrueTypeRasterizer)$")
   (#set! priority 150))
@@ -289,7 +289,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -330,7 +335,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -371,7 +381,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -412,7 +427,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -453,7 +473,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -494,7 +519,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -535,7 +565,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -576,7 +611,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -617,7 +657,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -658,7 +703,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -699,7 +749,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -740,7 +795,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -781,7 +841,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -822,7 +887,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -863,7 +933,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -904,7 +979,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -945,7 +1025,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -986,7 +1071,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1027,7 +1117,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1068,7 +1163,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1109,7 +1209,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1150,7 +1255,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1191,7 +1301,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1232,7 +1347,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1273,7 +1393,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1314,7 +1439,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1355,7 +1485,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1396,7 +1531,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1437,7 +1577,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1478,7 +1623,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1519,7 +1669,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1560,7 +1715,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1601,7 +1761,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1642,7 +1807,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1683,7 +1853,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1724,7 +1899,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1765,7 +1945,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1806,7 +1991,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1847,7 +2037,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1888,7 +2083,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1929,7 +2129,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -1970,7 +2175,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -2011,7 +2221,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -2052,7 +2267,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -2093,7 +2313,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -2134,7 +2359,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -2175,7 +2405,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -2216,7 +2451,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -2257,7 +2497,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -2298,7 +2543,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -2339,7 +2589,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -2380,7 +2635,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
@@ -2421,7 +2681,12 @@
 (function_call
   name: [
     (method_index_expression
-      table: (identifier) @type.love
+      [
+        table: (identifier) @type.love
+        ; highlight type methods when called with `:`
+        table: (dot_index_expression) @_
+        (identifier) @_
+      ]
       ":" @punctuation.dot.love
       method: (identifier) @function.method.love)
     (dot_index_expression
