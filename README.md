@@ -46,6 +46,7 @@ end
   - [🤖 Automated Workflow](#-automated-workflow)
   - [✋ Manual Generation (Optional)](#-manual-generation-optional)
 - [🎨 Screenshots](#-screenshots)
+- [‼️ Known limitation](#-known-limitation)
 - [📚 References & Related Projects](#-references--related-projects)
 - [©️ Credits](#-credits)
 
@@ -285,7 +286,7 @@ build/gen.bat
   <img src="https://raw.githubusercontent.com/yorik1984/love2d-treesitter.nvim/main/pics/screen2.png" alt="Neovim screenshot 2" width="80%">
 </div>
 
-## ⚠️ Known limitation
+## ‼️ Known limitation
 
 ### Same Methods for Different Types in LÖVE
 
