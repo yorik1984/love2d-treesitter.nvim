@@ -3,16 +3,16 @@ local check = require("love2d-treesitter.check")
 local M = {}
 
 ---@alias LoveTreesitterStyleType string
----| '"bold"'
----| '"italic"'
----| '"underline"'
----| '"bold,italic"'
----| '"bold,underline"'
----| '"italic,underline"'
----| '"NONE"'
+---| "bold"
+---| "italic"
+---| "underline"
+---| "bold,italic"
+---| "bold,underline"
+---| "italic,underline"
+---| "NONE"
 
 ---@class LoveTreesitterStyle
----@field love LoveTreesitterStyleType Style for 'love' global variable
+---@field love LoveTreesitterStyleType Style for `love` global variable
 ---@field module LoveTreesitterStyleType Style for LÖVE modules
 ---@field type LoveTreesitterStyleType Style for LÖVE types/objects
 ---@field dot LoveTreesitterStyleType Style for LÖVE dot and colon operator
@@ -22,7 +22,7 @@ local M = {}
 ---@field conf LoveTreesitterStyleType Style for LÖVE configuration (love.conf)
 
 ---@class LoveTreesitterColors
----@field LOVElove string? HEX color for 'love' global variable
+---@field LOVElove string? HEX color for `love` global variable
 ---@field LOVEmodule string? HEX color for LÖVE modules
 ---@field LOVEtype string? HEX color for LÖVE types/objects
 ---@field LOVEdot string? HEX color for LÖVE dot and colon operator
