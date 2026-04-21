@@ -42,20 +42,20 @@
   (#set! priority 150))
 ; Functions
 ((dot_index_expression
-  table: (identifier) @_love
+  table: (identifier) @variable.global.love
   "." @punctuation.dot.love
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#match? @function.love
     "^(getVersion|hasDeprecationOutput|isVersionCompatible|setDeprecationOutput)$")
   (#set! priority 150))
 
 ; Modules
 ((dot_index_expression
-  table: (identifier) @_love
+  table: (identifier) @variable.global.love
   "." @punctuation.dot.love
   field: (identifier) @module.bulitin.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#match? @module.bulitin.love
     "^(keyboard|window|data|thread|image|math|sound|joystick|touch|audio|physics|event|system|filesystem|graphics|timer|mouse|video|font)$")
   (#set! priority 150))
@@ -63,10 +63,10 @@
 ; Module's functions
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "keyboard")
   (#match? @function.love
     "^(getKeyFromScancode|getScancodeFromKey|hasKeyRepeat|hasScreenKeyboard|hasTextInput|isDown|isScancodeDown|setKeyRepeat|setTextInput)$")
@@ -74,10 +74,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "window")
   (#match? @function.love
     "^(close|fromPixels|getDPIScale|getDesktopDimensions|getDisplayCount|getDisplayName|getDisplayOrientation|getFullscreen|getFullscreenModes|getIcon|getMode|getPosition|getSafeArea|getTitle|getVSync|hasFocus|hasMouseFocus|isDisplaySleepEnabled|isMaximized|isMinimized|isOpen|isVisible|maximize|minimize|requestAttention|restore|setDisplaySleepEnabled|setFullscreen|setIcon|setMode|setPosition|setTitle|setVSync|showMessageBox|toPixels|updateMode)$")
@@ -85,10 +85,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "data")
   (#match? @function.love
     "^(compress|decode|decompress|encode|getPackedSize|hash|newByteData|newDataView|pack|unpack)$")
@@ -96,10 +96,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "thread")
   (#match? @function.love
     "^(getChannel|newChannel|newThread)$")
@@ -107,10 +107,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "image")
   (#match? @function.love
     "^(isCompressed|newCompressedData|newImageData)$")
@@ -118,10 +118,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "math")
   (#match? @function.love
     "^(colorFromBytes|colorToBytes|gammaToLinear|getRandomSeed|getRandomState|isConvex|linearToGamma|newBezierCurve|newRandomGenerator|newTransform|noise|random|randomNormal|setRandomSeed|setRandomState|triangulate)$")
@@ -129,10 +129,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "sound")
   (#match? @function.love
     "^(newDecoder|newSoundData)$")
@@ -140,10 +140,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "joystick")
   (#match? @function.love
     "^(getGamepadMappingString|getJoystickCount|getJoysticks|loadGamepadMappings|saveGamepadMappings|setGamepadMapping)$")
@@ -151,10 +151,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "touch")
   (#match? @function.love
     "^(getPosition|getPressure|getTouches)$")
@@ -162,10 +162,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "audio")
   (#match? @function.love
     "^(getActiveEffects|getActiveSourceCount|getDistanceModel|getDopplerScale|getEffect|getMaxSceneEffects|getMaxSourceEffects|getOrientation|getPosition|getRecordingDevices|getVelocity|getVolume|isEffectsSupported|newQueueableSource|newSource|pause|play|setDistanceModel|setDopplerScale|setEffect|setMixWithSystem|setOrientation|setPosition|setVelocity|setVolume|stop)$")
@@ -173,10 +173,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "physics")
   (#match? @function.love
     "^(getDistance|getMeter|newBody|newChainShape|newCircleShape|newDistanceJoint|newEdgeShape|newFixture|newFrictionJoint|newGearJoint|newMotorJoint|newMouseJoint|newPolygonShape|newPrismaticJoint|newPulleyJoint|newRectangleShape|newRevoluteJoint|newRopeJoint|newWeldJoint|newWheelJoint|newWorld|setMeter)$")
@@ -184,10 +184,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "event")
   (#match? @function.love
     "^(clear|poll|pump|push|quit|wait)$")
@@ -195,10 +195,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "system")
   (#match? @function.love
     "^(getClipboardText|getOS|getPowerInfo|getProcessorCount|hasBackgroundMusic|openURL|setClipboardText|vibrate)$")
@@ -206,10 +206,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "filesystem")
   (#match? @function.love
     "^(append|areSymlinksEnabled|createDirectory|getAppdataDirectory|getCRequirePath|getDirectoryItems|getIdentity|getInfo|getRealDirectory|getRequirePath|getSaveDirectory|getSource|getSourceBaseDirectory|getUserDirectory|getWorkingDirectory|init|isFused|lines|load|mount|newFile|newFileData|read|remove|setCRequirePath|setIdentity|setRequirePath|setSource|setSymlinksEnabled|unmount|write)$")
@@ -217,10 +217,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "graphics")
   (#match? @function.love
     "^(applyTransform|arc|captureScreenshot|circle|clear|discard|draw|drawInstanced|drawLayer|ellipse|flushBatch|getBackgroundColor|getBlendMode|getCanvas|getCanvasFormats|getColor|getColorMask|getDPIScale|getDefaultFilter|getDepthMode|getDimensions|getFont|getFrontFaceWinding|getHeight|getImageFormats|getLineJoin|getLineStyle|getLineWidth|getMeshCullMode|getPixelDimensions|getPixelHeight|getPixelWidth|getPointSize|getRendererInfo|getScissor|getShader|getStackDepth|getStats|getStencilTest|getSupported|getSystemLimits|getTextureTypes|getWidth|intersectScissor|inverseTransformPoint|isActive|isGammaCorrect|isWireframe|line|newArrayImage|newCanvas|newCubeImage|newFont|newImage|newImageFont|newMesh|newParticleSystem|newQuad|newShader|newSpriteBatch|newText|newVideo|newVolumeImage|origin|points|polygon|pop|present|print|printf|push|rectangle|replaceTransform|reset|rotate|scale|setBackgroundColor|setBlendMode|setCanvas|setColor|setColorMask|setDefaultFilter|setDepthMode|setFont|setFrontFaceWinding|setLineJoin|setLineStyle|setLineWidth|setMeshCullMode|setNewFont|setPointSize|setScissor|setShader|setStencilTest|setWireframe|shear|stencil|transformPoint|translate|validateShader)$")
@@ -228,10 +228,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "timer")
   (#match? @function.love
     "^(getAverageDelta|getDelta|getFPS|getTime|sleep|step)$")
@@ -239,10 +239,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "mouse")
   (#match? @function.love
     "^(getCursor|getPosition|getRelativeMode|getSystemCursor|getX|getY|isCursorSupported|isDown|isGrabbed|isVisible|newCursor|setCursor|setGrabbed|setPosition|setRelativeMode|setVisible|setX|setY)$")
@@ -250,10 +250,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "video")
   (#match? @function.love
     "^(newVideoStream)$")
@@ -261,10 +261,10 @@
 
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "font")
   (#match? @function.love
     "^(newBMFontRasterizer|newGlyphData|newImageRasterizer|newRasterizer|newTrueTypeRasterizer)$")
@@ -272,9 +272,9 @@
 
 ; Types
 ((dot_index_expression
-  table: (identifier) @_love
+  table: (identifier) @variable.global.love
   field: (identifier) @type.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#match? @type.love
     "^(Data|Object|VideoStream|Channel|Thread|Decoder|SoundData|Body|ChainShape|CircleShape|Contact|DistanceJoint|EdgeShape|Fixture|FrictionJoint|GearJoint|Joint|MotorJoint|MouseJoint|PolygonShape|PrismaticJoint|PulleyJoint|RevoluteJoint|RopeJoint|Shape|WeldJoint|WheelJoint|World|Cursor|BezierCurve|RandomGenerator|Transform|Joystick|CompressedImageData|ImageData|Canvas|Drawable|Font|Image|Mesh|ParticleSystem|Quad|Shader|SpriteBatch|Text|Texture|Video|GlyphData|Rasterizer|DroppedFile|File|FileData|ByteData|CompressedData|RecordingDevice|Source)$")
   (#set! priority 150))
@@ -2726,9 +2726,9 @@
 
 ; Callbacks
 ((dot_index_expression
-  table: (identifier) @_love
+  table: (identifier) @variable.global.love
   field: (identifier) @function.call.love.callback)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#match? @function.call.love.callback
     "^(conf|directorydropped|displayrotated|draw|errorhandler|filedropped|focus|gamepadaxis|gamepadpressed|gamepadreleased|joystickadded|joystickaxis|joystickhat|joystickpressed|joystickreleased|joystickremoved|keypressed|keyreleased|load|lowmemory|mousefocus|mousemoved|mousepressed|mousereleased|quit|resize|run|textedited|textinput|threaderror|touchmoved|touchpressed|touchreleased|update|visible|wheelmoved)$")
   (#set! priority 150))
@@ -2737,31 +2737,31 @@
 
 (function_declaration
   name: (dot_index_expression
-    table: (identifier) @_love
-    field: (identifier) @_conf)
+    table: (identifier) @variable.global.love
+    field: (identifier) @function.call.love.callback)
   parameters: (parameters
     (identifier) @module.bulitin.love)
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
   (#set! priority 150))
 
 (assignment_statement
   (variable_list
     name: (dot_index_expression
-      table: (identifier) @_love
-      field: (identifier) @_conf))
+      table: (identifier) @variable.global.love
+      field: (identifier) @function.call.love.callback))
   (expression_list
     value: (function_definition
       parameters: (parameters
         (identifier) @module.bulitin.love)))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
   (#set! priority 150))
 
 (function_declaration
   name: (dot_index_expression
-    table: (identifier) @_love
-    field: (identifier) @_conf)
+    table: (identifier) @variable.global.love
+    field: (identifier) @function.call.love.callback)
   body: (block
     (assignment_statement
       (variable_list
@@ -2769,8 +2769,8 @@
           table: (identifier) @module.bulitin.love
           "." @punctuation.dot.love
           field: (identifier) @function.call.love.conf))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
   (#match? @function.call.love.conf
     "^(console|accelerometerjoystick|identity|externalstorage|version|appendidentity|gammacorrect)$")
   (#set! priority 150))
@@ -2778,8 +2778,8 @@
 (assignment_statement
   (variable_list
     name: (dot_index_expression
-      table: (identifier) @_love
-      field: (identifier) @_conf))
+      table: (identifier) @variable.global.love
+      field: (identifier) @function.call.love.callback))
   (expression_list
     value: (function_definition
       body: (block
@@ -2789,16 +2789,16 @@
               table: (identifier) @module.bulitin.love
               "." @punctuation.dot.love
               field: (identifier) @function.call.love.conf))))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
   (#match? @function.call.love.conf
     "^(console|accelerometerjoystick|identity|externalstorage|version|appendidentity|gammacorrect)$")
   (#set! priority 150))
 
 (function_declaration
   name: (dot_index_expression
-    table: (identifier) @_love
-    field: (identifier) @_conf)
+    table: (identifier) @variable.global.love
+    field: (identifier) @function.call.love.callback)
   body: (block
     (assignment_statement
       (variable_list
@@ -2807,8 +2807,8 @@
             table: (identifier) @module.bulitin.love
             "." @punctuation.dot.love
             field: (identifier) @function.call.love.conf)))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
   (#match? @function.call.love.conf
     "^(audio|window|modules)$")
   (#set! priority 150))
@@ -2816,8 +2816,8 @@
 (assignment_statement
   (variable_list
     name: (dot_index_expression
-      table: (identifier) @_love
-      field: (identifier) @_conf))
+      table: (identifier) @variable.global.love
+      field: (identifier) @function.call.love.callback))
   (expression_list
     value: (function_definition
       body: (block
@@ -2828,16 +2828,16 @@
                 table: (identifier) @module.bulitin.love
                 "." @punctuation.dot.love
                 field: (identifier) @function.call.love.conf)))))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
   (#match? @function.call.love.conf
     "^(audio|window|modules)$")
   (#set! priority 150))
 
 (function_declaration
   name: (dot_index_expression
-    table: (identifier) @_love
-    field: (identifier) @_conf)
+    table: (identifier) @variable.global.love
+    field: (identifier) @function.call.love.callback)
   body: (block
     (assignment_statement
       (variable_list
@@ -2845,12 +2845,12 @@
           table: (dot_index_expression
             table: (identifier) @module.bulitin.love
             "." @punctuation.dot.love
-            field: (identifier) @_audio)
+            field: (identifier) @function.call.love.conf.module)
           "." @punctuation.dot.love
           field: (identifier) @function.call.love.conf))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
-  (#eq? @_audio "audio")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
+  (#eq? @function.call.love.conf.module "audio")
   (#match? @function.call.love.conf
     "^(mic|mixwithsystem)$")
   (#set! priority 150))
@@ -2858,8 +2858,8 @@
 (assignment_statement
   (variable_list
     name: (dot_index_expression
-      table: (identifier) @_love
-      field: (identifier) @_conf))
+      table: (identifier) @variable.global.love
+      field: (identifier) @function.call.love.callback))
   (expression_list
     value: (function_definition
       body: (block
@@ -2869,20 +2869,20 @@
               table: (dot_index_expression
                 table: (identifier) @module.bulitin.love
                 "." @punctuation.dot.love
-                field: (identifier) @_audio)
+                field: (identifier) @function.call.love.conf.module)
               "." @punctuation.dot.love
               field: (identifier) @function.call.love.conf))))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
-  (#eq? @_audio "audio")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
+  (#eq? @function.call.love.conf.module "audio")
   (#match? @function.call.love.conf
     "^(mic|mixwithsystem)$")
   (#set! priority 150))
 
 (function_declaration
   name: (dot_index_expression
-    table: (identifier) @_love
-    field: (identifier) @_conf)
+    table: (identifier) @variable.global.love
+    field: (identifier) @function.call.love.callback)
   body: (block
     (assignment_statement
       (variable_list
@@ -2890,12 +2890,12 @@
           table: (dot_index_expression
             table: (identifier) @module.bulitin.love
             "." @punctuation.dot.love
-            field: (identifier) @_window)
+            field: (identifier) @function.call.love.conf.module)
           "." @punctuation.dot.love
           field: (identifier) @function.call.love.conf))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
-  (#eq? @_window "window")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
+  (#eq? @function.call.love.conf.module "window")
   (#match? @function.call.love.conf
     "^(title|icon|width|height|borderless|resizable|minwidth|minheight|fullscreen|fullscreentype|usedpiscale|vsync|depth|stencil|msaa|display|highdpi|x|y)$")
   (#set! priority 150))
@@ -2903,8 +2903,8 @@
 (assignment_statement
   (variable_list
     name: (dot_index_expression
-      table: (identifier) @_love
-      field: (identifier) @_conf))
+      table: (identifier) @variable.global.love
+      field: (identifier) @function.call.love.callback))
   (expression_list
     value: (function_definition
       body: (block
@@ -2914,20 +2914,20 @@
               table: (dot_index_expression
                 table: (identifier) @module.bulitin.love
                 "." @punctuation.dot.love
-                field: (identifier) @_window)
+                field: (identifier) @function.call.love.conf.module)
               "." @punctuation.dot.love
               field: (identifier) @function.call.love.conf))))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
-  (#eq? @_window "window")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
+  (#eq? @function.call.love.conf.module "window")
   (#match? @function.call.love.conf
     "^(title|icon|width|height|borderless|resizable|minwidth|minheight|fullscreen|fullscreentype|usedpiscale|vsync|depth|stencil|msaa|display|highdpi|x|y)$")
   (#set! priority 150))
 
 (function_declaration
   name: (dot_index_expression
-    table: (identifier) @_love
-    field: (identifier) @_conf)
+    table: (identifier) @variable.global.love
+    field: (identifier) @function.call.love.callback)
   body: (block
     (assignment_statement
       (variable_list
@@ -2935,12 +2935,12 @@
           table: (dot_index_expression
             table: (identifier) @module.bulitin.love
             "." @punctuation.dot.love
-            field: (identifier) @_modules)
+            field: (identifier) @function.call.love.conf.module)
           "." @punctuation.dot.love
           field: (identifier) @function.call.love.conf))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
-  (#eq? @_modules "modules")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
+  (#eq? @function.call.love.conf.module "modules")
   (#match? @function.call.love.conf
     "^(audio|event|graphics|image|joystick|keyboard|math|mouse|physics|sound|system|timer|touch|video|window|thread)$")
   (#set! priority 150))
@@ -2948,8 +2948,8 @@
 (assignment_statement
   (variable_list
     name: (dot_index_expression
-      table: (identifier) @_love
-      field: (identifier) @_conf))
+      table: (identifier) @variable.global.love
+      field: (identifier) @function.call.love.callback))
   (expression_list
     value: (function_definition
       body: (block
@@ -2959,12 +2959,12 @@
               table: (dot_index_expression
                 table: (identifier) @module.bulitin.love
                 "." @punctuation.dot.love
-                field: (identifier) @_modules)
+                field: (identifier) @function.call.love.conf.module)
               "." @punctuation.dot.love
               field: (identifier) @function.call.love.conf))))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
-  (#eq? @_modules "modules")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
+  (#eq? @function.call.love.conf.module "modules")
   (#match? @function.call.love.conf
     "^(audio|event|graphics|image|joystick|keyboard|math|mouse|physics|sound|system|timer|touch|video|window|thread)$")
   (#set! priority 150))

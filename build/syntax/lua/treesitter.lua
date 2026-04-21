@@ -171,10 +171,10 @@ if scm_func_str ~= "" then
     scm_content = scm_content .. string.format([[
 ; Functions
 ((dot_index_expression
-  table: (identifier) @_love
+  table: (identifier) @variable.global.love
   "." @punctuation.dot.love
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#match? @function.love
     "^(%s)$")
   (#set! priority 150))
@@ -185,10 +185,10 @@ end
 scm_content = scm_content .. string.format([[
 ; Modules
 ((dot_index_expression
-  table: (identifier) @_love
+  table: (identifier) @variable.global.love
   "." @punctuation.dot.love
   field: (identifier) @module.bulitin.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#match? @module.bulitin.love
     "^(%s)$")
   (#set! priority 150))
@@ -202,10 +202,10 @@ for module, functions in pairs(scm_modules) do
         scm_content = scm_content .. string.format([[
 ((dot_index_expression
   table: (dot_index_expression
-    table: (identifier) @_love
+    table: (identifier) @variable.global.love
     field: (identifier) @module.bulitin.love)
   field: (identifier) @function.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "%s")
   (#match? @function.love
     "^(%s)$")
@@ -219,9 +219,9 @@ if scm_types_str ~= "" then
     scm_content = scm_content .. string.format([[
 ; Types
 ((dot_index_expression
-  table: (identifier) @_love
+  table: (identifier) @variable.global.love
   field: (identifier) @type.love)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#match? @type.love
     "^(%s)$")
   (#set! priority 150))
@@ -301,9 +301,9 @@ if scm_callbacks_str ~= "" then
     scm_content = scm_content .. string.format([[
 ; Callbacks
 ((dot_index_expression
-  table: (identifier) @_love
+  table: (identifier) @variable.global.love
   field: (identifier) @function.call.love.callback)
-  (#eq? @_love "love")
+  (#eq? @variable.global.love "love")
   (#match? @function.call.love.callback
     "^(%s)$")
   (#set! priority 150))
@@ -326,25 +326,25 @@ end
 conf_scm = conf_scm .. [[
 (function_declaration
   name: (dot_index_expression
-    table: (identifier) @_love
-    field: (identifier) @_conf)
+    table: (identifier) @variable.global.love
+    field: (identifier) @function.call.love.callback)
   parameters: (parameters
     (identifier) @module.bulitin.love)
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
   (#set! priority 150))
 
 (assignment_statement
   (variable_list
     name: (dot_index_expression
-      table: (identifier) @_love
-      field: (identifier) @_conf))
+      table: (identifier) @variable.global.love
+      field: (identifier) @function.call.love.callback))
   (expression_list
     value: (function_definition
       parameters: (parameters
         (identifier) @module.bulitin.love)))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
   (#set! priority 150))
 
 ]]
@@ -354,8 +354,8 @@ if #simple_keys > 0 then
     conf_scm = conf_scm .. string.format([[
 (function_declaration
   name: (dot_index_expression
-    table: (identifier) @_love
-    field: (identifier) @_conf)
+    table: (identifier) @variable.global.love
+    field: (identifier) @function.call.love.callback)
   body: (block
     (assignment_statement
       (variable_list
@@ -363,8 +363,8 @@ if #simple_keys > 0 then
           table: (identifier) @module.bulitin.love
           "." @punctuation.dot.love
           field: (identifier) @function.call.love.conf))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
   (#match? @function.call.love.conf
     "^(%s)$")
   (#set! priority 150))
@@ -374,8 +374,8 @@ if #simple_keys > 0 then
 (assignment_statement
   (variable_list
     name: (dot_index_expression
-      table: (identifier) @_love
-      field: (identifier) @_conf))
+      table: (identifier) @variable.global.love
+      field: (identifier) @function.call.love.callback))
   (expression_list
     value: (function_definition
       body: (block
@@ -385,8 +385,8 @@ if #simple_keys > 0 then
               table: (identifier) @module.bulitin.love
               "." @punctuation.dot.love
               field: (identifier) @function.call.love.conf))))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
   (#match? @function.call.love.conf
     "^(%s)$")
   (#set! priority 150))
@@ -399,8 +399,8 @@ if #table_keys > 0 then
     conf_scm = conf_scm .. string.format([[
 (function_declaration
   name: (dot_index_expression
-    table: (identifier) @_love
-    field: (identifier) @_conf)
+    table: (identifier) @variable.global.love
+    field: (identifier) @function.call.love.callback)
   body: (block
     (assignment_statement
       (variable_list
@@ -409,8 +409,8 @@ if #table_keys > 0 then
             table: (identifier) @module.bulitin.love
             "." @punctuation.dot.love
             field: (identifier) @function.call.love.conf)))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
   (#match? @function.call.love.conf
     "^(%s)$")
   (#set! priority 150))
@@ -420,8 +420,8 @@ if #table_keys > 0 then
 (assignment_statement
   (variable_list
     name: (dot_index_expression
-      table: (identifier) @_love
-      field: (identifier) @_conf))
+      table: (identifier) @variable.global.love
+      field: (identifier) @function.call.love.callback))
   (expression_list
     value: (function_definition
       body: (block
@@ -432,8 +432,8 @@ if #table_keys > 0 then
                 table: (identifier) @module.bulitin.love
                 "." @punctuation.dot.love
                 field: (identifier) @function.call.love.conf)))))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
   (#match? @function.call.love.conf
     "^(%s)$")
   (#set! priority 150))
@@ -447,8 +447,8 @@ for key, subkeys in pairs(scm_conf_keys) do
         conf_scm = conf_scm .. string.format([[
 (function_declaration
   name: (dot_index_expression
-    table: (identifier) @_love
-    field: (identifier) @_conf)
+    table: (identifier) @variable.global.love
+    field: (identifier) @function.call.love.callback)
   body: (block
     (assignment_statement
       (variable_list
@@ -456,23 +456,23 @@ for key, subkeys in pairs(scm_conf_keys) do
           table: (dot_index_expression
             table: (identifier) @module.bulitin.love
             "." @punctuation.dot.love
-            field: (identifier) @_%s)
+            field: (identifier) @function.call.love.conf.module)
           "." @punctuation.dot.love
           field: (identifier) @function.call.love.conf))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
-  (#eq? @_%s "%s")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
+  (#eq? @function.call.love.conf.module "%s")
   (#match? @function.call.love.conf
     "^(%s)$")
   (#set! priority 150))
 
-]], key, key, key, sub_pattern)
+]], key, sub_pattern)
         conf_scm = conf_scm .. string.format([[
 (assignment_statement
   (variable_list
     name: (dot_index_expression
-      table: (identifier) @_love
-      field: (identifier) @_conf))
+      table: (identifier) @variable.global.love
+      field: (identifier) @function.call.love.callback))
   (expression_list
     value: (function_definition
       body: (block
@@ -482,17 +482,17 @@ for key, subkeys in pairs(scm_conf_keys) do
               table: (dot_index_expression
                 table: (identifier) @module.bulitin.love
                 "." @punctuation.dot.love
-                field: (identifier) @_%s)
+                field: (identifier) @function.call.love.conf.module)
               "." @punctuation.dot.love
               field: (identifier) @function.call.love.conf))))))
-  (#eq? @_love "love")
-  (#eq? @_conf "conf")
-  (#eq? @_%s "%s")
+  (#eq? @variable.global.love "love")
+  (#eq? @function.call.love.callback "conf")
+  (#eq? @function.call.love.conf.module "%s")
   (#match? @function.call.love.conf
     "^(%s)$")
   (#set! priority 150))
 
-]], key, key, key, sub_pattern)
+]], key, sub_pattern)
     end
 end
 
