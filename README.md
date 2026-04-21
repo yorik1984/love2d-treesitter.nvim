@@ -146,7 +146,6 @@ require("love2d-treesitter").setup({
 {
     "yorik1984/love2d-treesitter.nvim",
     dependencies = {
-        { "yorik1984/love2d-docs.nvim" }, -- Built-in LÖVE documentation
         {
             "yorik1984/love2d-snippets",  -- LÖVE VS Code-compatible snippets
             branch = "main", -- default or `branch = "11.5"` for special API version
@@ -157,7 +156,8 @@ require("love2d-treesitter").setup({
             config = function()
                 require("luasnip.loaders.from_vscode").lazy_load()
             end
-        }
+        },
+        { "yorik1984/love2d-docs.nvim" }, -- Built-in LÖVE documentation
         { "S1M0N38/love2d.nvim" },        -- A simple Neovim plugin to build games with LÖVE
     },
     ft = "lua",
