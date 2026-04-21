@@ -157,6 +157,7 @@ Highlight Group                     HEX Color   Variable        Style ~
 @function.method.love.lua           #2FA8DC     LOVEmethod      NONE
 @function.call.love.callback.lua    #2FA8DC     LOVEcallback    NONE
 @function.call.love.conf.lua        #2FA8DC     LOVEconf        NONE
+@function.call.love.conf.module.lua #2FA8DC     LOVEconf        NONE
 
 ==============================================================================
 3. COMMANDS                                      *love2d-treesitter-commands*

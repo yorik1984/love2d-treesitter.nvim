@@ -8,7 +8,7 @@
 
 **Beautiful syntax highlighting 📝 | Treesitter support 🌳**
 
-## ✨ About
+## 📜 About
 
 **love2d-treesitter.nvim** is a comprehensive plugin for [Neovim](https://neovim.io/) that highlight [LÖVE](http://love2d.org) syntax in your editor.
 
@@ -16,7 +16,34 @@
 - 🌳 **Treesitter Support** — Full integration with Neovim's Treesitter
 - 🔧 **Customizable** — Flexible styling options
 
-### Features highlighted:
+<!-- TOC -->
+
+## Table of Contents
+
+- [🚀 Features](#-features)
+  - [✨ Highlighting](#-highlighting)
+- [📦 Installation](#-installation)
+- [📍 Default settings](#-default-settings)
+- [❓ Plugin Help](#-plugin-help)
+- [🔄 Rebuilding the API](#-rebuilding-the-api)
+  - [🤖 Automated Workflow](#-automated-workflow)
+  - [✋ Manual Generation (Optional)](#-manual-generation-optional)
+- [🎨 Screenshots](#-screenshots)
+- [🚨 Known limitation](#-known-limitation)
+- [📚 References & Related Projects](#-references--related-projects)
+- [🙏 Credits](#-credits)
+- [📄 License](#-license)
+
+<!-- /TOC -->
+
+## 🚀 Features
+
+### ✨ Highlighting
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/yorik1984/love2d-treesitter.nvim/main/pics/highlight-feat.png" alt="Highlight error" width="80%">
+  <br>
+</div>
 
 ```lua
 -- LÖVE functions light up automatically
@@ -34,23 +61,6 @@ function love.conf(t)
     t.window.height = 600
 end
 ```
-
-<!-- TOC -->
-
-## Table of Contents
-
-- [📦 Installation](#-installation)
-- [📍 Default settings](#-default-settings)
-- [❓ Plugin Help](#-plugin-help)
-- [🔄 Rebuilding the API](#-rebuilding-the-api)
-  - [🤖 Automated Workflow](#-automated-workflow)
-  - [✋ Manual Generation (Optional)](#-manual-generation-optional)
-- [🎨 Screenshots](#-screenshots)
-- [🚨 Known limitation](#-known-limitation)
-- [📚 References & Related Projects](#-references--related-projects)
-- [🔑 Credits](#-credits)
-
-<!-- /TOC -->
 
 ## 📦 Installation
 
@@ -174,16 +184,17 @@ require("love2d-treesitter").setup({
 
 Configure Treesitter styles using the following defaults:
 
-| Highlight Group                    | HEX Color | Color Variable | Style  |
-| ---------------------------------- | --------- | -------------- | ------ |
-| `@variable.global.love.lua`        | `#E54D95` | `LOVElove`     | `bold` |
-| `@module.bulitin.love.lua`         | `#E54D95` | `LOVEmodule`   | `NONE` |
-| `@type.love.lua`                   | `#E54D95` | `LOVEtype`     | `NONE` |
-| `@punctuation.dot.love.lua`        | `#E54D95` | `LOVEdot`      | `NONE` |
-| `@function.love.lua`               | `#2FA8DC` | `LOVEfunction` | `NONE` |
-| `@function.method.love.lua`        | `#2FA8DC` | `LOVEmethod`   | `NONE` |
-| `@function.call.love.callback.lua` | `#2FA8DC` | `LOVEcallback` | `NONE` |
-| `@function.call.love.conf.lua`     | `#2FA8DC` | `LOVEconf`     | `NONE` |
+| Highlight Group                       | HEX Color | Color Variable | Style  |
+| ------------------------------------- | --------- | -------------- | ------ |
+| `@variable.global.love.lua`           | `#E54D95` | `LOVElove`     | `bold` |
+| `@module.bulitin.love.lua`            | `#E54D95` | `LOVEmodule`   | `NONE` |
+| `@type.love.lua`                      | `#E54D95` | `LOVEtype`     | `NONE` |
+| `@punctuation.dot.love.lua`           | `#E54D95` | `LOVEdot`      | `NONE` |
+| `@function.love.lua`                  | `#2FA8DC` | `LOVEfunction` | `NONE` |
+| `@function.method.love.lua`           | `#2FA8DC` | `LOVEmethod`   | `NONE` |
+| `@function.call.love.callback.lua`    | `#2FA8DC` | `LOVEcallback` | `NONE` |
+| `@function.call.love.conf.lua`        | `#2FA8DC` | `LOVEconf`     | `NONE` |
+| `@function.call.love.conf.module.lua` | `#2FA8DC` | `LOVEconf`     | `NONE` |
 
 ## Commands
 
@@ -203,8 +214,8 @@ Example configuration with [lazy.nvim](https://github.com/folke/lazy.nvim):
 {
     "yorik1984/love2d-treesitter",
     keys = {
-        { "<leader>Lt", "<cmd>LOVEHighlightToggle<cr>", ft = "lua", desc = "Toggle LÖVE Highlights" },
-        { "<leader>Le", "<cmd>LOVEHighlightEnable<cr>", ft = "lua", desc = "Enable LÖVE Highlights" },
+        { "<leader>Lt", "<cmd>LOVEHighlightToggle<cr>",  ft = "lua", desc = "Toggle LÖVE Highlights" },
+        { "<leader>Le", "<cmd>LOVEHighlightEnable<cr>",  ft = "lua", desc = "Enable LÖVE Highlights" },
         { "<leader>Ld", "<cmd>LOVEHighlightDisable<cr>", ft = "lua", desc = "Disable LÖVE Highlights" },
     },
 }
@@ -342,30 +353,41 @@ something:method()  -- Will highlight, but will cause an error!
 
 ## 📚 References & Related Projects
 
-+ **[love2d-definitions](https://github.com/yorik1984/love2d-definitions)**<br>
-[LuaCATS](https://luals.github.io/wiki/annotations/) definition for [LÖVE](https://love2d.org/) framework.
-Creates `---@class` and `---@alias` definitions for perfect autocompletion and type checking in IDEs with LuaCATS.
++ **[love2d-snippets](https://github.com/yorik1984/love2d-snippets)** <br>
+    A snippet generator and collection for the LÖVE framework, compatible with VS Code, Neovim (via LuaSnip), and any editor that supports VS Code-style snippets.
+    *   **🤖 Automated Updates:** GitHub Actions parses the official love-api and generates up-to-date snippets whenever the API changes.
+    *   **📦 Full API Coverage:** Includes snippets for all modules, functions, callbacks, type methods, constructors, getters/setters, enums, and `conf.lua`.
+    *   **⌨️ Tabs for Indentation:** Uses tab characters (`\t`) for indentation, allowing each developer to configure their preferred display width (2, 4, 8 spaces, etc.) without changing the actual files.
+    *   **📌 Version Branches:** Repository branches match LÖVE versions (e.g., branch `11.5` for LÖVE 11.5), while the `main` branch always contains the latest API.
+
++ **[love2d-definitions](https://github.com/yorik1984/love2d-definitions)** <br>
+    [LuaCATS](https://luals.github.io/wiki/annotations/) definition for [LÖVE](https://love2d.org/) framework.
+    Creates `---@class` and `---@alias` definitions for perfect autocompletion and type checking in IDEs with LuaCATS.
     - **🤖 Automated Updates:** Uses GitHub Actions to stay in sync with the official love-api, just like this plugin.
     - **📦 Ready-to-Use:** Provides a pre-generated `library/` folder that you can directly add to your workspace library.
     - **🧠 Smart Type System:** Intelligently handles type unions, plural forms (e.g., `tables` → `table[]`), optional parameters, and function overloads.
     - **📌 Version Branches:** Includes branches for specific LÖVE versions (e.g., `11.5`), so you can use annotations that match your project.
 
 > [!TIP]
-> Use this definition alongside **love2d-treesitter** for the ultimate LÖVE development setup — get beautiful syntax highlighting in your editor and intelligent IDE autocompletion from these LuaCATS annotations.
+> Use **love2d-definitions** and **love2d-snippets** alongside **love2d-treesitter** for the ultimate LÖVE development setup — get beautiful syntax highlighting in your editor and intelligent IDE autocompletion from these LuaCATS annotations.
 
-+ **[love2d-docs.nvim](https://github.com/yorik1984/love2d-docs.nvim)**<br>
-Is a comprehensive plugin for [Neovim](https://neovim.io/) and [Vim](https://www.vim.org/) that brings the entire [LÖVE](http://love2d.org) game framework documentation right into your editor.
++ **[love2d-docs.nvim](https://github.com/yorik1984/love2d-docs.nvim)** <br>
+    Is a comprehensive plugin for [Neovim](https://neovim.io/) and [Vim](https://www.vim.org/) that brings the entire [LÖVE](http://love2d.org) game framework documentation right into your editor.
     - 📖 **Built-in Help** — Complete LÖVE API documentation accessible via `:help LOVE-*`
 
-+ **[love2d-vim-syntax](https://github.com/yorik1984/love2d-vim-syntax)**<br>
-Plugin for [Vim](https://www.vim.org/) that highlight [LÖVE](http://love2d.org) syntax in your editor.
++ **[love2d-vim-syntax](https://github.com/yorik1984/love2d-vim-syntax)** <br>
+    Plugin for [Vim](https://www.vim.org/) that highlight [LÖVE](http://love2d.org) syntax in your editor.
     - 🎨 **Syntax Highlighting** — Colors LÖVE functions, modules, types, and callbacks
     - 🔧 **Customizable** — Flexible styling options for Vim
 
-## 🔑 Credits
+## 🙏 Credits
 
 + Original Author: [Davis Claiborne](https://github.com/davisdude) — Created and maintained the original [vim-love-docs](https://github.com/davisdude/vim-love-docs)
 + Powered by: [love-api](https://github.com/love2d-community/love-api) — Community-maintained LÖVE API specification
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details.
 
 <div align="center">
   <sub>
