@@ -139,7 +139,7 @@ require("love2d-treesitter").setup({
 ```
 
 > [!TIP]
-> Add configuration for enhanced LÖVE development with  built-in API docs and LÖVE-specific features<br>
+> Add configuration for enhanced LÖVE development with  built-in API docs and LÖVE-specific features <br>
 > See more in [📚 References & Related Projects](#-references--related-projects) and [love2d-snippets example settings](https://github.com/yorik1984/love2d-snippets/wiki#example-settings)
 
 ```lua
@@ -404,8 +404,8 @@ This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LI
   <sub>
     Built with ♡ for the LÖVE community
     <br>
-    <a href="https://github.com/yorik1984/love2d-treesitter/issues">Report Issue</a> ·
-    <a href="https://github.com/yorik1984/love2d-treesitter/discussions">Discussion</a> ·
+    <a href="https://github.com/yorik1984/love2d-treesitter/issues">Report Issue</a> •
+    <a href="https://github.com/yorik1984/love2d-treesitter/discussions">Discussion</a> •
     <a href="https://love2d.org/">LÖVE</a>
   </sub>
 </div>
