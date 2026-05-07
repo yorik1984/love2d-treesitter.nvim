@@ -96,10 +96,10 @@ extractData(api)
 
 extractConfData(api)
 
--- Join list with pipe (default "|") or trim trailing pipe from string
+-- Join list with pipe (default `'" "'`) or trim trailing pipe from string
 local function joinPipe(list, pipe)
     if not list then return "" end
-    pipe = pipe or "|"
+    pipe = pipe or '" "'
     if type(list) == "string" then
         return (list:gsub(pipe .. "%s*$", ""))
     end
@@ -120,7 +120,7 @@ local scm_types_str     = joinPipe(scm_types)
 local scm_callbacks_str = joinPipe(scm_callbacks)
 
 local scm_content       = [[
-; extends
+;; extends
 
 ; LOVE framework highlighting for Treesitter
 
@@ -134,37 +134,28 @@ local scm_content       = [[
 
 scm_content             = scm_content .. [[
 ; `love`
-(function_call
-  name: (dot_index_expression
+([
+  (function_call
+    (dot_index_expression
+      table: (identifier) @variable.global.love
+      "." @punctuation.dot.love))
+  (function_declaration
+    (dot_index_expression
+      table: (identifier) @variable.global.love
+      "." @punctuation.dot.love))
+  (assignment_statement
+    (variable_list
+      name: (identifier) @variable.global.love))
+  (dot_index_expression
     table: (identifier) @variable.global.love
     "." @punctuation.dot.love)
+  (return_statement
+    (expression_list
+      (identifier) @variable.global.love))
+]
   (#eq? @variable.global.love "love")
   (#set! priority 150))
 
-(function_declaration
-  name: (dot_index_expression
-    table: (identifier) @variable.global.love
-    "." @punctuation.dot.love)
-  (#eq? @variable.global.love "love")
-  (#set! priority 150))
-
-((assignment_statement
-  (variable_list
-    name: (identifier) @variable.global.love))
-  (#eq? @variable.global.love "love")
-  (#set! priority 150))
-
-((dot_index_expression
-  table: (identifier) @variable.global.love
-  "." @punctuation.dot.love)
-  (#eq? @variable.global.love "love")
-  (#set! priority 150))
-
-(return_statement
-  (expression_list
-    (identifier) @variable.global.love)
-  (#eq? @variable.global.love "love")
-  (#set! priority 150))
 ]]
 
 if scm_func_str ~= "" then
@@ -173,10 +164,11 @@ if scm_func_str ~= "" then
 ((dot_index_expression
   table: (identifier) @variable.global.love
   "." @punctuation.dot.love
-  field: (identifier) @function.love)
+  field: (identifier) @function.love) @_function
+  (#not-has-parent? @_function dot_index_expression)
   (#eq? @variable.global.love "love")
-  (#match? @function.love
-    "^(%s)$")
+  (#any-of? @function.love
+    "%s")
   (#set! priority 150))
 
 ]], scm_func_str)
@@ -187,10 +179,11 @@ scm_content = scm_content .. string.format([[
 ((dot_index_expression
   table: (identifier) @variable.global.love
   "." @punctuation.dot.love
-  field: (identifier) @module.bulitin.love)
+  field: (identifier) @module.bulitin.love) @_function
+  (#not-has-parent? @_function dot_index_expression function_call)
   (#eq? @variable.global.love "love")
-  (#match? @module.bulitin.love
-    "^(%s)$")
+  (#any-of? @module.bulitin.love
+    "%s")
   (#set! priority 150))
 
 ; Module's functions
@@ -203,12 +196,15 @@ for module, functions in pairs(scm_modules) do
 ((dot_index_expression
   table: (dot_index_expression
     table: (identifier) @variable.global.love
+    "." @punctuation.dot.love
     field: (identifier) @module.bulitin.love)
-  field: (identifier) @function.love)
+  "." @punctuation.dot.love
+  field: (identifier) @function.love) @_function
+  (#not-has-parent? @_function dot_index_expression)
   (#eq? @variable.global.love "love")
   (#eq? @module.bulitin.love "%s")
-  (#match? @function.love
-    "^(%s)$")
+  (#any-of? @function.love
+    "%s")
   (#set! priority 150))
 
 ]], module, funcs_str)
@@ -220,51 +216,54 @@ if scm_types_str ~= "" then
 ; Types
 ((dot_index_expression
   table: (identifier) @variable.global.love
-  field: (identifier) @type.love)
+  field: (identifier) @type.love) @_function
+  (#not-has-parent? @_function dot_index_expression)
   (#eq? @variable.global.love "love")
-  (#match? @type.love
-    "^(%s)$")
+  (#any-of? @type.love
+    "%s")
   (#set! priority 150))
 
 (assignment_statement
   (variable_list
     name: (identifier) @type.love)
-  (#match? @type.love "^(%s)$")
+  (#any-of? @type.love "%s")
   (#set! priority 150))
 
 ; Type's methods
+; also  highlight type methods when called with `:`
 ]], scm_types_str, scm_types_str)
 
     for type_name, methods in pairs(scm_type_methods) do
         if #methods > 0 then
-            local methods_str = joinPipe(methods, "|")
+            local methods_str = joinPipe(methods, '" "')
             scm_content = scm_content .. string.format([[
 (function_call
-  name: [
-    (method_index_expression
-      [
-        table: (identifier) @type.love
-        ; highlight type methods when called with `:`
-        table: (dot_index_expression) @_
-        (identifier) @_
-      ]
-      ":" @punctuation.dot.love
-      method: (identifier) @function.method.love)
-    (dot_index_expression
-      table: (identifier) @type.love
-      "." @punctuation.dot.love
-      field: (identifier) @function.method.love)
-  ]
+  (dot_index_expression
+    table: (identifier) @type.love
+    "." @punctuation.dot.love
+    field: (identifier) @function.method.love)
   (#eq? @type.love "%s")
-  (#match? @function.method.love
-    "^(%s)$")
+  (#any-of? @function.method.love "%s")
   (#set! priority 150))
 
-]], type_name, methods_str)
+(function_call
+  (method_index_expression
+    [
+      table: (identifier) @type.love
+      table: (dot_index_expression)
+      (identifier)
+    ]
+    ":" @punctuation.dot.love
+    method: (identifier) @function.method.love)
+  (#eq? @type.love "%s")
+  (#any-of? @function.method.love "%s")
+  (#set! priority 150))
+
+]], type_name, methods_str, type_name, methods_str)
 
             scm_content = scm_content .. string.format([[
 (function_declaration
-  name: [
+  [
     (method_index_expression
       table: (identifier) @type.love
       ":" @punctuation.dot.love
@@ -275,24 +274,23 @@ if scm_types_str ~= "" then
       field: (identifier) @function.method.love)
   ]
   (#eq? @type.love "%s")
-  (#match? @function.method.love
-    "^(%s)$")
+  (#any-of? @function.method.love "%s")
   (#set! priority 150))
 
-]], type_name, methods_str)
+]], type_name, methods_str, type_name, methods_str)
 
             scm_content = scm_content .. string.format([[
 ((dot_index_expression
   table: (identifier) @type.love
   "." @punctuation.dot.love
-  field: (identifier) @function.method.love)
+  field: (identifier) @function.method.love) @_function
+  (#not-has-parent? @_function dot_index_expression)
   (#eq? @type.love "%s")
-  (#match? @function.method.love
-    "^(%s)$")
+  (#any-of? @function.method.love
+    "%s")
   (#set! priority 150))
 
 ]], type_name, methods_str)
-
         end
     end
 end
@@ -302,16 +300,20 @@ if scm_callbacks_str ~= "" then
 ; Callbacks
 ((dot_index_expression
   table: (identifier) @variable.global.love
-  field: (identifier) @function.call.love.callback)
+  field: (identifier) @function.call.love.callback) @_function
+  (#not-has-parent? @_function dot_index_expression)
   (#eq? @variable.global.love "love")
-  (#match? @function.call.love.callback
-    "^(%s)$")
+  (#any-of? @function.call.love.callback
+    "%s")
   (#set! priority 150))
 
 ]], scm_callbacks_str)
 end
 
-local conf_scm = "; LOVE conf highlighting inside love.conf\n\n"
+local conf_scm = [[
+; LOVE conf highlighting inside love.conf
+
+]]
 
 local simple_keys = {}
 local table_keys = {}
@@ -324,176 +326,94 @@ for key, subkeys in pairs(scm_conf_keys) do
 end
 
 conf_scm = conf_scm .. [[
-(function_declaration
-  name: (dot_index_expression
-    table: (identifier) @variable.global.love
-    field: (identifier) @function.call.love.callback)
-  parameters: (parameters
-    (identifier) @module.bulitin.love)
-  (#eq? @variable.global.love "love")
-  (#eq? @function.call.love.callback "conf")
-  (#set! priority 150))
-
-(assignment_statement
-  (variable_list
-    name: (dot_index_expression
+([
+  (function_declaration
+    (dot_index_expression
       table: (identifier) @variable.global.love
-      field: (identifier) @function.call.love.callback))
-  (expression_list
-    value: (function_definition
-      parameters: (parameters
-        (identifier) @module.bulitin.love)))
+      field: (identifier) @function.call.love.callback)
+    (parameters
+      (identifier) @module.bulitin.love))
+  (assignment_statement
+    (variable_list
+      (dot_index_expression
+        table: (identifier) @variable.global.love
+        field: (identifier) @function.call.love.callback))
+    (expression_list
+      (function_definition
+        parameters: (parameters
+          (identifier) @module.bulitin.love))))
+]
   (#eq? @variable.global.love "love")
   (#eq? @function.call.love.callback "conf")
   (#set! priority 150))
 
 ]]
 
-if #simple_keys > 0 then
-    local simple_pattern = joinPipe(simple_keys, "|")
-    conf_scm = conf_scm .. string.format([[
-(function_declaration
-  name: (dot_index_expression
-    table: (identifier) @variable.global.love
-    field: (identifier) @function.call.love.callback)
-  body: (block
-    (assignment_statement
-      (variable_list
-        name: (dot_index_expression
-          table: (identifier) @module.bulitin.love
-          "." @punctuation.dot.love
-          field: (identifier) @function.call.love.conf))))
-  (#eq? @variable.global.love "love")
-  (#eq? @function.call.love.callback "conf")
-  (#match? @function.call.love.conf
-    "^(%s)$")
-  (#set! priority 150))
-
-]], simple_pattern)
-    conf_scm = conf_scm .. string.format([[
-(assignment_statement
-  (variable_list
-    name: (dot_index_expression
-      table: (identifier) @variable.global.love
-      field: (identifier) @function.call.love.callback))
-  (expression_list
-    value: (function_definition
-      body: (block
-        (assignment_statement
-          (variable_list
-            name: (dot_index_expression
-              table: (identifier) @module.bulitin.love
-              "." @punctuation.dot.love
-              field: (identifier) @function.call.love.conf))))))
-  (#eq? @variable.global.love "love")
-  (#eq? @function.call.love.callback "conf")
-  (#match? @function.call.love.conf
-    "^(%s)$")
-  (#set! priority 150))
-
-]], simple_pattern)
-end
-
-if #table_keys > 0 then
-    local table_pattern = joinPipe(table_keys, "|")
-    conf_scm = conf_scm .. string.format([[
-(function_declaration
-  name: (dot_index_expression
-    table: (identifier) @variable.global.love
-    field: (identifier) @function.call.love.callback)
-  body: (block
-    (assignment_statement
-      (variable_list
-        name: (dot_index_expression
-          table: (dot_index_expression
-            table: (identifier) @module.bulitin.love
-            "." @punctuation.dot.love
-            field: (identifier) @function.call.love.conf)))))
-  (#eq? @variable.global.love "love")
-  (#eq? @function.call.love.callback "conf")
-  (#match? @function.call.love.conf
-    "^(%s)$")
-  (#set! priority 150))
-
-]], table_pattern)
-    conf_scm = conf_scm .. string.format([[
-(assignment_statement
-  (variable_list
-    name: (dot_index_expression
-      table: (identifier) @variable.global.love
-      field: (identifier) @function.call.love.callback))
-  (expression_list
-    value: (function_definition
-      body: (block
-        (assignment_statement
-          (variable_list
-            name: (dot_index_expression
-              table: (dot_index_expression
-                table: (identifier) @module.bulitin.love
-                "." @punctuation.dot.love
-                field: (identifier) @function.call.love.conf)))))))
-  (#eq? @variable.global.love "love")
-  (#eq? @function.call.love.callback "conf")
-  (#match? @function.call.love.conf
-    "^(%s)$")
-  (#set! priority 150))
-
-]], table_pattern)
-end
-
 for key, subkeys in pairs(scm_conf_keys) do
     if #subkeys > 0 then
-        local sub_pattern = joinPipe(subkeys, "|")
+        local sub_pattern = joinPipe(subkeys, '" "')
         conf_scm = conf_scm .. string.format([[
-(function_declaration
-  name: (dot_index_expression
-    table: (identifier) @variable.global.love
-    field: (identifier) @function.call.love.callback)
-  body: (block
-    (assignment_statement
-      (variable_list
-        name: (dot_index_expression
-          table: (dot_index_expression
-            table: (identifier) @module.bulitin.love
-            "." @punctuation.dot.love
-            field: (identifier) @function.call.love.conf.module)
-          "." @punctuation.dot.love
-          field: (identifier) @function.call.love.conf))))
-  (#eq? @variable.global.love "love")
-  (#eq? @function.call.love.callback "conf")
-  (#eq? @function.call.love.conf.module "%s")
-  (#match? @function.call.love.conf
-    "^(%s)$")
-  (#set! priority 150))
-
-]], key, sub_pattern)
-        conf_scm = conf_scm .. string.format([[
-(assignment_statement
-  (variable_list
-    name: (dot_index_expression
-      table: (identifier) @variable.global.love
-      field: (identifier) @function.call.love.callback))
-  (expression_list
-    value: (function_definition
-      body: (block
-        (assignment_statement
-          (variable_list
-            name: (dot_index_expression
-              table: (dot_index_expression
-                table: (identifier) @module.bulitin.love
-                "." @punctuation.dot.love
-                field: (identifier) @function.call.love.conf.module)
+([
+  (function_declaration
+    (block
+      (assignment_statement
+        (variable_list
+          (dot_index_expression
+            table: (dot_index_expression
+              table: (identifier) @module.bulitin.love
               "." @punctuation.dot.love
-              field: (identifier) @function.call.love.conf))))))
-  (#eq? @variable.global.love "love")
-  (#eq? @function.call.love.callback "conf")
+              field: (identifier) @function.call.love.conf.module)
+            "." @punctuation.dot.love
+            field: (identifier) @function.call.love.conf)))))
+  (assignment_statement
+    (expression_list
+      (function_definition
+        (block
+          (assignment_statement
+            (variable_list
+              (dot_index_expression
+                table: (dot_index_expression
+                  table: (identifier) @module.bulitin.love
+                  "." @punctuation.dot.love
+                  field: (identifier) @function.call.love.conf.module)
+                "." @punctuation.dot.love
+                field: (identifier) @function.call.love.conf)))))))
+]
   (#eq? @function.call.love.conf.module "%s")
-  (#match? @function.call.love.conf
-    "^(%s)$")
+  (#any-of? @function.call.love.conf "%s")
   (#set! priority 150))
 
 ]], key, sub_pattern)
     end
+end
+
+if #simple_keys > 0 then
+    local simple_pattern = joinPipe(simple_keys, '" "')
+    conf_scm = conf_scm .. string.format([[
+([
+  (function_declaration
+    (block
+      (assignment_statement
+        (variable_list
+          (dot_index_expression
+            table: (identifier) @module.bulitin.love
+            "." @punctuation.dot.love
+            field: (identifier) @function.call.love.conf)))))
+  (assignment_statement
+    (expression_list
+      (function_definition
+        (block
+          (assignment_statement
+            (variable_list
+              (dot_index_expression
+                table: (identifier) @module.bulitin.love
+                "." @punctuation.dot.love
+                field: (identifier) @function.call.love.conf)))))))
+]
+  (#any-of? @function.call.love.conf "%s")
+  (#set! priority 140))
+
+]], simple_pattern)
 end
 
 scm_content = scm_content .. conf_scm
