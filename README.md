@@ -1,10 +1,17 @@
-<h1 align="center">♡&nbsp;&nbsp; <a href="https://love2d.org">LÖVE</a> <a href="https://github.com/nvim-treesitter/nvim-treesitter">Treesitter</a>&nbsp;&nbsp;♡</h1>
+<div align="center">
+
+  <img src="https://raw.githubusercontent.com/yorik1984/love2d-treesitter.nvim/main/pics/conceal.png" alt="Conceal" height="256">
+  <br>
+
+<h1>♡&nbsp;&nbsp; <a href="https://love2d.org">LÖVE</a> <a href="https://github.com/nvim-treesitter/nvim-treesitter">Treesitter</a>&nbsp;&nbsp;♡</h1>
 
 [![Generate love2d-treesitter](https://github.com/yorik1984/love2d-treesitter.nvim/actions/workflows/update-love-api.yml/badge.svg)](https://github.com/yorik1984/love2d-treesitter.nvim/actions/workflows/update-love-api.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yorik1984/love2d-treesitter.nvim/blob/main/LICENSE)
 [![Lua](https://img.shields.io/badge/Lua-5.1-blue.svg)](https://www.lua.org/)
 [![LÖVE API](https://img.shields.io/badge/L%C3%96VE_API-11.5-EA316E.svg)](https://github.com/love2d-community/love-api)
 [![Neovim](https://img.shields.io/badge/Neovim-0.5+-green.svg)](https://neovim.io/)
+
+</div>
 
 **Beautiful syntax highlighting 📝 | Treesitter support 🌳**
 
@@ -24,6 +31,7 @@
   - [✨ Highlighting](#-highlighting)
 - [📦 Installation](#-installation)
 - [📍 Default settings](#-default-settings)
+- [💻 Commands](#-commands)
 - [❓ Plugin Help](#-plugin-help)
 - [🔄 Rebuilding the API](#-rebuilding-the-api)
   - [🤖 Automated Workflow](#-automated-workflow)
@@ -112,6 +120,10 @@ require("lazy").setup({
 ---@field notifications boolean Whether to enable notifications
 ---@field style LoveTreesitterStyle Custom font styles (supports combinations like "bold,italic")
 ---@field colors LoveTreesitterColors Optional table to override default HEX colors
+
+---@class LoveTreesitterConceal
+---@field love string|false Character to conceal the `love` global variable (e.g., "L"). Set to `false` or `nil` to disable. Defaults to false
+---@field love_dot string|false Character to conceal the `love.` dot operator (e.g., "."). Set to `false` or `nil` to disable. Defaults to false
 require("love2d-treesitter").setup({
     enable_on_start = true,
     notifications = true,
@@ -135,8 +147,18 @@ require("love2d-treesitter").setup({
         LOVEcallback = nil,
         LOVEconf     = nil,
     },
+    conceal = {
+        love = false,           -- `love = ""` or `love = "🩷"`
+        love_dot = false,       -- empty `""`
+    },
 })
 ```
+>[!NOTE]
+> `:help 'conceallevel'` for more details. <br>
+> `config.conceal` replaces the word `love` and the following dot with a symbol for visual convenience. Does not affect the code in any way. <bf>
+> Controls the conceal level for open Lua file windows. Can be managed individually for each window using the editor's built-in commands. However, when using the plugin commands, it switches all windows to the same mode. <br>
+> See [💻 Commands](#-commands).
+
 
 > [!TIP]
 > Add configuration for enhanced LÖVE development with  built-in API docs and LÖVE-specific features <br>
@@ -207,15 +229,15 @@ Configure Treesitter styles using the following defaults:
 | `@function.call.love.conf.lua`        | `#2FA8DC` | `LOVEconf`     | `NONE` |
 | `@function.call.love.conf.module.lua` | `#2FA8DC` | `LOVEconf`     | `NONE` |
 
-## Commands
+## 💻 Commands
 
-The plugin provides the following user commands to manage highlighting states.
+The plugin provides the following user commands to manage highlighting and conceal states.
 
 | Command                 | Description                                            |
 | ----------------------- | ------------------------------------------------------ |
-| `:LOVEHighlightEnable`  | **Enables** LÖVE highlighting for the current session. |
-| `:LOVEHighlightDisable` | **Disables** LÖVE highlighting and resets colors.      |
-| `:LOVEHighlightToggle`  | **Toggles** the highlighting state (On/Off).           |
+| `:LOVEHighlightEnable`  | **Enables** LÖVE highlighting and conceal for the current session. |
+| `:LOVEHighlightDisable` | **Disables** LÖVE highlighting and conceal. Resets colors.      |
+| `:LOVEHighlightToggle`  | **Toggles** the highlighting and conceal state (On/Off).           |
 
 #### Recommended Keybindings
 
