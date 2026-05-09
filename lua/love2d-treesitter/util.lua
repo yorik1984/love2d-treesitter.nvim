@@ -2,6 +2,7 @@ local colors       = require("love2d-treesitter.colors")
 local configModule = require("love2d-treesitter.config")
 local style        = require("love2d-treesitter.style")
 local theme        = require("love2d-treesitter.theme")
+local conceal      = require("love2d-treesitter.conceal")
 local M            = {}
 
 function M.syntax(syntax)
@@ -47,24 +48,63 @@ function M.load(configApply)
 
     local configColors = colors.setup(config)
     local configStyle = style.setupStyle(config)
+    conceal.setConceal(config)
+
     if config.enable_on_start == true then
+        vim.g.love2d_treesitter_conceallevel = 2
         M.syntax(theme.setup(configColors, configStyle))
         M.autocmds(theme.setup(configColors, configStyle))
     else
+        vim.g.love2d_treesitter_conceallevel = 0
+        -- force set to 0 (not revert to default `vim.o.conceallevel`) to hide love concealed symbols
+        M.setConceal(0)
         M.syntaxClear(theme.setup(configColors, configStyle))
         vim.api.nvim_create_augroup("love2d-treesitter", { clear = true })
     end
 end
 
+function M.setConceal(level)
+    vim.schedule(function()
+        local cur_win = vim.fn.winnr()
+        vim.cmd("windo if &ft == 'lua' | setlocal conceallevel=" .. level .. " | endif")
+        vim.cmd(cur_win .. "wincmd w")
+    end)
+end
+
 function M.autocmds(syntax)
-    local group = vim.api.nvim_create_augroup("love2d-treesitter", {})
-    vim.api.nvim_create_autocmd({ "VimEnter", "BufReadPost" }, {
-        group = group,
+    vim.api.nvim_create_autocmd({ "VimEnter", "BufWinEnter", "WinEnter" }, {
+        group = vim.api.nvim_create_augroup("love2d-treesitter", {}),
         pattern = { "*.lua" },
         callback = function()
             require("love2d-treesitter.util").syntax(syntax)
         end,
     })
+    if vim.g.love2d_treesitter_conceal == true and vim.g.love2d_treesitter_conceallevel == 2 then
+        local group = vim.api.nvim_create_augroup("love2d-treesitter-conceal", {})
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "LOVEHighlightEnable",
+            group = group,
+            callback = function()
+                require("love2d-treesitter.util").setConceal(2)
+            end,
+        })
+
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "LOVEHighlightDisable",
+            group = group,
+            callback = function()
+                require("love2d-treesitter.util").setConceal(0)
+            end,
+        })
+
+        vim.api.nvim_create_autocmd("User", {
+            pattern = "LOVEHighlightToggle",
+            group = group,
+            callback = function()
+                require("love2d-treesitter.util").setConceal(vim.g.love2d_treesitter_conceallevel)
+            end,
+        })
+    end
 end
 
 return M
