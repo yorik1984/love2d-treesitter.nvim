@@ -79,6 +79,10 @@ LAZY.NVIM ~
     ---@field notifications boolean Whether to enable notifications
     ---@field style LoveTreesitterStyle Custom font styles (supports combinations like "bold,italic")
     ---@field colors LoveTreesitterColors Optional table to override default HEX colors
+
+    ---@class LoveTreesitterConceal
+    ---@field love string|false Character to conceal the `love` global variable (e.g., "L"). Set to `false` or `nil` to disable. Defaults to false
+    ---@field love_dot string|false Character to conceal the `love.` dot operator (e.g., "."). Set to `false` or `nil` to disable. Defaults to false
     opts = {
         enable_on_start = true,
         notifications = true,
@@ -102,8 +106,21 @@ LAZY.NVIM ~
             LOVEcallback = nil,
             LOVEconf     = nil,
         },
+        conceal = {
+            love = false,       -- `love = ""` or `love = "🩷"`
+            love_dot = false,   -- empty `""`
+        },
     }
 <
+
+NOTE:
+ See |'conceallevel'| for more details.
+ `config.conceal` replaces the word `love` and the following dot with a symbol
+ for visual convenience. Does not affect the code in any way.
+ Controls the conceal level for open Lua file windows. Can be managed individually
+ for each window using the editor's built-in commands. However, when using the
+ plugin commands, it switches all windows to the same mode.
+ See |love2d-treesitter-commands|.
 
 NOTE:
 Add configuration for enhanced LÖVE development with  built-in API docs and LÖVE-specific features
@@ -175,9 +192,9 @@ Highlight Group                     HEX Color   Variable        Style ~
 ┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ Command             ┃ Description                                   ┃
 ┗━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-`LOVEHighlightEnable`    Enable LÖVE highlighting.
-`LOVEHighlightDisable`   Disable LÖVE highlighting.
-`LOVEHighlightToggle`    Toggle highlighting state.
+`LOVEHighlightEnable`    Enable LÖVE highlighting and conceal.
+`LOVEHighlightDisable`   Disable LÖVE highlighting and conceal.
+`LOVEHighlightToggle`    Toggle highlighting and conceal state.
 
 ==============================================================================
 4. KEYBINDINGS                                *love2d-treesitter-keybindings*
