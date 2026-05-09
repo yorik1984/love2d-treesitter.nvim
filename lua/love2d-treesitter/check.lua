@@ -120,6 +120,7 @@ function M.typeError(userConfig)
         notifications   = "boolean",
         style           = "table", -- preset table
         colors          = "table", -- preset table
+        conceal         = "table", -- preset table
     }
 
     local function is_allowed_type_or_value(value, expected)

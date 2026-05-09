@@ -37,6 +37,9 @@ local M = {}
 ---@field style LoveTreesitterStyle Custom font styles (supports combinations like "bold,italic")
 ---@field colors LoveTreesitterColors Optional table to override default HEX colors
 
+---@class LoveTreesitterConceal
+---@field love string|false Character to conceal the `love` global variable (e.g., "L"). Set to `false` to disable. Defaults to `false`
+---@field love_dot string|false Character to conceal the `love.` dot operator (e.g., "."). Set to `false` to disable. Defaults to `false`
 M.defaults = {
     enable_on_start = true,
     notifications = true,
@@ -59,6 +62,10 @@ M.defaults = {
         LOVEmethod   = nil,
         LOVEcallback = nil,
         LOVEconf     = nil,
+    },
+    conceal = {
+        love = false,       -- `love = ""` or `love = "🩷"`
+        love_dot = false,   -- empty `""`
     },
 }
 
