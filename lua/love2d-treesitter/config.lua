@@ -33,17 +33,19 @@ local M = {}
 
 ---@class LoveTreesitterConfig
 ---@field enable_on_start boolean Whether to enable highlighting automatically on startup
+---@field auto_detect_love2d boolean Whether to automatically detect LÖVE projects. Requires installed https://github.com/S1M0N38/love2d.nvim
 ---@field notifications boolean Whether to enable notifications
 ---@field style LoveTreesitterStyle Custom font styles (supports combinations like "bold,italic")
 ---@field colors LoveTreesitterColors Optional table to override default HEX colors
 
 ---@class LoveTreesitterConceal
----@field love string|false Character to conceal the `love` global variable (e.g., "L"). Set to `false` to disable. Defaults to `false`
----@field love_dot string|false Character to conceal the `love.` dot operator (e.g., "."). Set to `false` to disable. Defaults to `false`
+---@field love string|false Character to conceal the `love` global variable. Set to `false` to disable. Defaults to `false`
+---@field love_dot string|false Character to conceal the dot operator (e.g., ".") after `love.` . Set to `false` to disable. Defaults to `false`
 M.defaults = {
-    enable_on_start = true,
-    notifications = true,
-    style = {
+    enable_on_start    = false,
+    auto_detect_love2d = true, -- requires installed https://github.com/S1M0N38/love2d.nvim
+    notifications      = true,
+    style              = {
         love     = "bold",
         module   = "NONE",
         type     = "NONE",
@@ -53,7 +55,7 @@ M.defaults = {
         callback = "NONE",
         conf     = "NONE",
     },
-    colors = {
+    colors             = {
         LOVElove     = nil, -- Example: "#E54D95"
         LOVEmodule   = nil,
         LOVEtype     = nil,
@@ -63,9 +65,9 @@ M.defaults = {
         LOVEcallback = nil,
         LOVEconf     = nil,
     },
-    conceal = {
-        love = false,       -- `love = ""` or `love = "🩷"`
-        love_dot = false,   -- empty `""`
+    conceal            = {
+        love = false,     -- `love = ""` or `love = "🩷"`
+        love_dot = false, -- empty `""`
     },
 }
 
@@ -82,6 +84,11 @@ function M.setup(user_settings)
     check.keyExistsError(user_settings, M.defaults, "Option")
 
     M.config = vim.tbl_deep_extend("force", {}, M.defaults, user_settings)
+
+    if M.config.auto_detect_love2d then
+        check.requiresPluginError("love2d",
+            "`auto_detect_love2d` option requires `https://github.com/S1M0N38/love2d.nvim` or set to `false` to disable autodetecting love2d projects")
+    end
 
     for k, v in pairs(M.config) do
         if v == 0 then
