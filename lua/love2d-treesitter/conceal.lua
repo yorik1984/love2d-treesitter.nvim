@@ -17,7 +17,7 @@ M.setConceal = function(config)
     local query_to_add = ";; extends\n"
     local has_content = false
     if charDot then
-        local concealDot = string.format([[(#set! conceal "%s" @punctuation.dot.love)]], charDot)
+        local concealDot = string.format([[(#set! @punctuation.dot.love conceal "%s")]], charDot)
 
         query_to_add = query_to_add .. string.format([[
 ([
@@ -41,7 +41,7 @@ M.setConceal = function(config)
     end
 
     if charLove then
-        local concealLove = string.format([[(#set! conceal "%s" @variable.global.love)]], charLove)
+        local concealLove = string.format([[(#set! @variable.global.love conceal "%s")]], charLove)
         query_to_add = query_to_add .. string.format([[
 ([
   (function_call
