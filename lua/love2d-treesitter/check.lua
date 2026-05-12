@@ -1,5 +1,7 @@
 local M = {}
 
+M.PLUGIN_NAME = "love2d-treesitter"
+
 function M.contains(tbl, value)
     if type(tbl) ~= "table" then
         return false
@@ -36,8 +38,9 @@ end
 ---@param help string?
 function M.keyExistsError(userConfig, config, key_type, help)
     local error_help = {
-        style      = "Use: style = { love = '<style>', module = '<style>', func = '<style>', type = '<style>', callback = '<style>', conf = '<style>' }",
-        colors     = "Use: colors = { LOVE<Type> = '#XXXXXX' }",
+        style  =
+        "Use: style = { love = '<style>', module = '<style>', func = '<style>', type = '<style>', callback = '<style>', conf = '<style>' }",
+        colors = "Use: colors = { LOVE<Type> = '#XXXXXX' }",
     }
     for key, _ in pairs(userConfig or {}) do
         if config[key] == nil then
@@ -49,7 +52,7 @@ function M.keyExistsError(userConfig, config, key_type, help)
             end
 
             error(string.format(
-                "love2d-treesitter: %s `%s` does not exist.%s",
+                "**" .. M.PLUGIN_NAME .. "**: %s `%s` does not exist.%s",
                 key_type or "Option", key, hint
             ), 2)
         end
@@ -59,7 +62,8 @@ end
 function M.notTableError(key, value, help)
     if value ~= nil then
         if type(value) ~= "table" then
-            error("love2d-treesitter: user `config." .. key .. " = " .. tostring(value) .. "` not a table. " .. help)
+            error("**" ..
+            M.PLUGIN_NAME .. "**: user `config." .. key .. " = " .. tostring(value) .. "` not a table. " .. help)
         end
     end
 end
@@ -70,7 +74,7 @@ function M.requiresPluginError(plugin, help)
     if not M.isLoaded(plugin) then
         help = help or ""
         error(string.format(
-            "love2d-treesitter: Plugin `%s` not loaded or not installed. %s",
+            "**" .. M.PLUGIN_NAME .. "**: Plugin `%s` not loaded or not installed. %s",
             plugin, help
         ))
     end
@@ -80,7 +84,7 @@ end
 ---@param user_settings any
 function M.validateUserSettings(user_settings)
     if user_settings ~= nil and type(user_settings) ~= "table" then
-        error("love2d-treesitter: Error in `setup(config)`. `config` must be a table or nil", 2)
+        error("**" .. M.PLUGIN_NAME .. "**: Error in `setup(config)`. `config` must be a table or nil", 2)
     end
 end
 
@@ -166,7 +170,7 @@ function M.typeError(userConfig)
                     end
                 end
                 error(string.format(
-                    "love2d-treesitter: Invalid value/type for config.%s. Expected %s, got %s",
+                    "**" .. M.PLUGIN_NAME .. "**: Invalid value/type for config.%s. Expected %s, got %s",
                     key, expected_repr, type(value)
                 ))
             end

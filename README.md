@@ -117,16 +117,18 @@ require("lazy").setup({
 
 ---@class LoveTreesitterConfig
 ---@field enable_on_start boolean Whether to enable highlighting automatically on startup
+---@field auto_detect_love2d boolean Whether to automatically detect LÖVE projects. Requires installed https://github.com/S1M0N38/love2d.nvim
 ---@field notifications boolean Whether to enable notifications
 ---@field style LoveTreesitterStyle Custom font styles (supports combinations like "bold,italic")
 ---@field colors LoveTreesitterColors Optional table to override default HEX colors
 
 ---@class LoveTreesitterConceal
----@field love string|false Character to conceal the `love` global variable (e.g., "L"). Set to `false` or `nil` to disable. Defaults to false
----@field love_dot string|false Character to conceal the `love.` dot operator (e.g., "."). Set to `false` or `nil` to disable. Defaults to false
+---@field love string|false Character to conceal the `love` global variable. Set to `false` to disable. Defaults to `false`
+---@field love_dot string|false Character to conceal the dot operator (e.g., ".") after `love.` . Set to `false` to disable. Defaults to `false`
 require("love2d-treesitter").setup({
-    enable_on_start = true,
-    notifications = true,
+    enable_on_start    = false,
+    auto_detect_love2d = true, -- requires installed https://github.com/S1M0N38/love2d.nvim
+    notifications      = true,
     style = {
         love     = "bold",      -- `love` global variable
         module   = "NONE",      -- LÖVE modules (graphics, audio, etc.)
@@ -165,52 +167,70 @@ require("love2d-treesitter").setup({
 > See more in [📚 References & Related Projects](#-references--related-projects) and [love2d-snippets example settings](https://github.com/yorik1984/love2d-snippets/wiki#example-settings)
 
 ```lua
+require("lazy").setup(
 {
     "yorik1984/love2d-treesitter.nvim",
+    -- All dependencies are optional
     dependencies = {
         {
-            "yorik1984/love2d-snippets",  -- LÖVE VS Code-compatible snippets
+            -- LÖVE VS Code-compatible snippet                "yorik1984/love2d-snippets",
+            "yorik1984/love2d-snippets",
             branch = "main", -- default or `branch = "11.5"` for special API version
             ft = "lua",
-            dependencies = {
-                "L3MON4D3/LuaSnip",
-            },
+            dependencies = "L3MON4D3/LuaSnip",
             config = function()
                 require("luasnip.loaders.from_vscode").lazy_load()
             end
         },
-        { "yorik1984/love2d-docs.nvim" }, -- Built-in LÖVE documentation
-        { "S1M0N38/love2d.nvim" },        -- A simple Neovim plugin to build games with LÖVE
+        {
+            -- Built-in LÖVE documentation
+            "yorik1984/love2d-docs.nvim"
+        },
+        {
+            -- A simple Neovim plugin to build games with LÖVE
+            "S1M0N38/love2d.nvim",
+            -- optional: add custom definitions
+            -- Disable automatic LSP configuration by this plugin
+            -- NOTE: You will need to manually configure lua_ls (Lua Language Server)
+            -- Example:
+            -- Lua = {
+            --     runtime = { version = "LuaJIT" },
+            --     diagnostics = { disable = { "duplicate-set-field" } },
+            --     workspace = { checkThirdParty = false },
+            -- },
+            ft = "lua",
+            opts = {
+                lsp = false
+            },
+            dependencies = {
+                {
+                    "folke/lazydev.nvim",
+                    ft = "lua",
+                    dependencies = { "yorik1984/love2d-definitions", "LuaCATS/luasocket" },
+                    opts = {
+                        library = {
+                            {
+                                path = vim.fn.stdpath("data") .. "/lazy/love2d-definitions/library",
+                                files = { "main.lua", "conf.lua" },
+                            },
+                            {
+                                path = vim.fn.stdpath("data") .. "/lazy/luasocket/library",
+                                words = { "socket", "http", "url", "ftp", "smtp" },
+                            },
+                        },
+                    }
+                },
+            },
+        },
     },
     ft = "lua",
     opts = {
         enable_on_start = false,
+        auto_detect_love2d = true, -- requires installed https://github.com/S1M0N38/love2d.nvim or set to `false`
         ...
     },
-    config = function(_, opts)
-        require("love2d-treesitter").setup(opts)
-
-        -- Autodetect LÖVE project
-        local group = vim.api.nvim_create_augroup("Love2DAutoStart", { clear = true })
-        vim.api.nvim_create_autocmd({ "VimEnter", "BufReadPost" }, {
-            group = group,
-            pattern = { "*.lua" },
-            callback = function()
-                local configModule = require("love2d-treesitter.config")
-                configModule.setup(opts)
-                local config = configModule.config
-                config.enable_on_start = true
-
-                local ok, love2d = pcall(require, "love2d")
-                if ok and type(love2d.is_love2d_project) == "function" then
-                    if love2d.is_love2d_project() then
-                        require("love2d-treesitter.util").load(config)
-                    end
-                end
-            end,
-        })
-    end,
 }
+)
 ```
 
 #### Treesitter Highlight Groups
@@ -235,8 +255,8 @@ The plugin provides the following user commands to manage highlighting and conce
 
 | Command                 | Description                                            |
 | ----------------------- | ------------------------------------------------------ |
-| `:LOVEHighlightEnable`  | **Enables** LÖVE highlighting and conceal for the current session. |
 | `:LOVEHighlightDisable` | **Disables** LÖVE highlighting and conceal. Resets colors.      |
+| `:LOVEHighlightEnable`  | **Enables** LÖVE highlighting and conceal for the current session. |
 | `:LOVEHighlightToggle`  | **Toggles** the highlighting and conceal state (On/Off).           |
 
 #### Recommended Keybindings
@@ -247,9 +267,9 @@ Example configuration with [lazy.nvim](https://github.com/folke/lazy.nvim):
 {
     "yorik1984/love2d-treesitter",
     keys = {
-        { "<leader>Lt", "<cmd>LOVEHighlightToggle<cr>",  ft = "lua", desc = "Toggle LÖVE Highlights" },
-        { "<leader>Le", "<cmd>LOVEHighlightEnable<cr>",  ft = "lua", desc = "Enable LÖVE Highlights" },
-        { "<leader>Ld", "<cmd>LOVEHighlightDisable<cr>", ft = "lua", desc = "Disable LÖVE Highlights" },
+        { "<leader>Lhd", "<cmd>LOVEHighlightDisable<cr>", ft = "lua", desc = "LÖVE Highlights Disable" },
+        { "<leader>Lhe", "<cmd>LOVEHighlightEnable<cr>",  ft = "lua", desc = "LÖVE Highlights Enable " },
+        { "<leader>Lht", "<cmd>LOVEHighlightToggle<cr>",  ft = "lua", desc = "LÖVE Highlights Toggle " },
     },
 }
 ```
