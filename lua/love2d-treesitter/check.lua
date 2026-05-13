@@ -63,21 +63,25 @@ function M.notTableError(key, value, help)
     if value ~= nil then
         if type(value) ~= "table" then
             error("**" ..
-            M.PLUGIN_NAME .. "**: user `config." .. key .. " = " .. tostring(value) .. "` not a table. " .. help)
+                M.PLUGIN_NAME .. "**: user `config." .. key .. " = " .. tostring(value) .. "` not a table. " .. help)
         end
     end
 end
 
 ---@param plugin string
 ---@param help string?
-function M.requiresPluginError(plugin, help)
+---@param level? integer 0=trace,1=debug,2=info,3=warn,4=error
+function M.requiresPluginError(plugin, help, level)
+    level = level or vim.log.levels.ERROR
     if not M.isLoaded(plugin) then
         help = help or ""
-        error(string.format(
+        local msg = string.format(
             "**" .. M.PLUGIN_NAME .. "**: Plugin `%s` not loaded or not installed. %s",
             plugin, help
-        ))
+        )
+        vim.notify(msg, level)
     end
+    return M.isLoaded(plugin)
 end
 
 ---Validate user_settings argument for setup

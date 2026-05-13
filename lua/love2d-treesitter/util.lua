@@ -1,4 +1,3 @@
-local check        = require("love2d-treesitter.check")
 local colors       = require("love2d-treesitter.colors")
 local conceal      = require("love2d-treesitter.conceal")
 local configModule = require("love2d-treesitter.config")
@@ -36,6 +35,11 @@ end
 
 function M.setup(userConfig)
     local config = configModule.setup(userConfig)
+    if configModule.config.auto_detect_love2d == true then
+        configModule.config.enable_on_start = true
+        M.autocmdsAutodetect()
+    end
+
     M.load(config)
 end
 
@@ -52,39 +56,69 @@ function M.load(configApply)
     conceal.setConceal(config)
 
     if config.enable_on_start == true then
-        vim.g.love2d_treesitter_conceallevel = 2
         M.syntax(theme.setup(configColors, configStyle))
         M.autocmds(theme.setup(configColors, configStyle))
     else
-        vim.g.love2d_treesitter_conceallevel = 0
         -- force set to 0 (not revert to default `vim.o.conceallevel`) to hide love concealed symbols
         M.setConceal(0)
-        M.syntaxClear(theme.setup(configColors, configStyle))
         vim.api.nvim_create_augroup("love2d-treesitter", { clear = true })
+        M.syntaxClear(theme.setup(configColors, configStyle))
     end
 end
 
 function M.setConceal(level)
     vim.schedule(function()
-        local cur_win = vim.fn.winnr()
-        vim.cmd("windo if &ft == 'lua' | setlocal conceallevel=" .. level .. " | endif")
-        vim.cmd(cur_win .. "wincmd w")
+        local wins = vim.api.nvim_tabpage_list_wins(0)
+        for _, win in ipairs(wins) do
+            local buf = vim.api.nvim_win_get_buf(win)
+            if vim.bo[buf].filetype == 'lua' then
+                vim.api.nvim_win_call(win, function()
+                    vim.wo.conceallevel = level
+                end)
+            end
+        end
     end)
 end
 
-function M.autocmds(syntax)
-    vim.api.nvim_create_autocmd({ "VimEnter", "BufWinEnter", "WinEnter" }, {
-        group = vim.api.nvim_create_augroup("love2d-treesitter", {}),
-        pattern = { "*.lua" },
+function M.autocmdsAutodetect()
+    local love2d_treesitter_autodetect = vim.api.nvim_create_augroup("love2d-treesitter-autodetect", {})
+    vim.api.nvim_create_autocmd("User", {
+        pattern = "LoveProjectEnter",
+        group = love2d_treesitter_autodetect,
         callback = function()
-            require("love2d-treesitter.util").syntax(syntax)
+            vim.schedule(function()
+                vim.cmd("LOVEHighlightEnable")
+            end)
         end,
     })
-    if vim.g.love2d_treesitter_conceal == true and vim.g.love2d_treesitter_conceallevel == 2 then
-        local group = vim.api.nvim_create_augroup("love2d-treesitter-conceal", {})
 
+    vim.api.nvim_create_autocmd("User", {
+        pattern = "LoveProjectLeave",
+        group = love2d_treesitter_autodetect,
+        callback = function()
+            vim.schedule(function()
+                vim.cmd("LOVEHighlightDisable")
+            end)
+        end,
+    })
+end
+
+function M.autocmds(syntax)
+    local love2d_treesitter = vim.api.nvim_create_augroup("love2d-treesitter", {})
+    vim.api.nvim_create_autocmd({ "VimEnter", "BufWinEnter", "WinEnter" }, {
+        group = love2d_treesitter,
+        pattern = { "*.lua" },
+        callback = function()
+            vim.schedule(function()
+                require("love2d-treesitter.util").syntax(syntax)
+            end)
+        end,
+    })
+
+    if vim.g.love2d_treesitter_conceal == true then
+        local group = vim.api.nvim_create_augroup("love2d-treesitter-conceal", {})
         vim.api.nvim_create_autocmd("User", {
-            pattern = { "LOVEHighlightEnable", "LoveProjectEnter" },
+            pattern = "LOVEHighlightEnable",
             group = group,
             callback = function()
                 require("love2d-treesitter.util").setConceal(2)
@@ -92,7 +126,7 @@ function M.autocmds(syntax)
         })
 
         vim.api.nvim_create_autocmd("User", {
-            pattern = { "LOVEHighlightDisable", "LoveProjectLeave" },
+            pattern = "LOVEHighlightDisable",
             group = group,
             callback = function()
                 require("love2d-treesitter.util").setConceal(0)
