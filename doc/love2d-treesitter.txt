@@ -85,9 +85,9 @@ LAZY.NVIM ~
     ---@field love string|false Character to conceal the `love` global variable. Set to `false` to disable. Defaults to `false`
     ---@field love_dot string|false Character to conceal the dot operator (e.g., ".") after `love.` . Set to `false` to disable. Defaults to `false`
     opts = {
-        enable_on_start = true,
+        enable_on_start    = false
         auto_detect_love2d = true, -- requires installed https://github.com/S1M0N38/love2d.nvim
-        notifications = true,
+        notifications      = false
         style = {
             love     = "bold",
             module   = "NONE",
@@ -109,7 +109,7 @@ LAZY.NVIM ~
             LOVEconf     = nil,
         },
         conceal = {
-            love = false,       -- `love = ""` or `love = "🩷"`
+            love     = false,   -- `love = ""` or `love = "🩷"`
             love_dot = false,   -- empty `""`
         },
     }

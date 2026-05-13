@@ -44,7 +44,7 @@ local M = {}
 M.defaults = {
     enable_on_start    = false,
     auto_detect_love2d = true, -- requires installed https://github.com/S1M0N38/love2d.nvim
-    notifications      = true,
+    notifications      = false,
     style              = {
         love     = "bold",
         module   = "NONE",
@@ -66,7 +66,7 @@ M.defaults = {
         LOVEconf     = nil,
     },
     conceal            = {
-        love = false,     -- `love = ""` or `love = "🩷"`
+        love     = false, -- `love = ""` or `love = "🩷"`
         love_dot = false, -- empty `""`
     },
 }
@@ -86,8 +86,9 @@ function M.setup(user_settings)
     M.config = vim.tbl_deep_extend("force", {}, M.defaults, user_settings)
 
     if M.config.auto_detect_love2d then
-        check.requiresPluginError("love2d",
-            "`auto_detect_love2d` option requires `https://github.com/S1M0N38/love2d.nvim` or set to `false` to disable autodetecting love2d projects")
+        M.config.auto_detect_love2d = check.requiresPluginError("love2d",
+            "`auto_detect_love2d` option requires `https://github.com/S1M0N38/love2d.nvim` or set to `false` to disable autodetecting love2d projects",
+            2)
     end
 
     for k, v in pairs(M.config) do
