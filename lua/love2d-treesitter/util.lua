@@ -40,6 +40,7 @@ function M.setup(userConfig)
         M.autocmdsAutodetect()
     end
 
+    M.autocmdColorscheme(config)
     M.load(config)
 end
 
@@ -71,13 +72,23 @@ function M.setConceal(level)
         local wins = vim.api.nvim_tabpage_list_wins(0)
         for _, win in ipairs(wins) do
             local buf = vim.api.nvim_win_get_buf(win)
-            if vim.bo[buf].filetype == 'lua' then
+            if vim.bo[buf].filetype == "lua" then
                 vim.api.nvim_win_call(win, function()
                     vim.wo.conceallevel = level
                 end)
             end
         end
     end)
+end
+
+function M.autocmdColorscheme(config)
+    local augroup = vim.api.nvim_create_augroup("love2d-treesitter-colorscheme", {})
+    vim.api.nvim_create_autocmd("ColorScheme", {
+        group = augroup,
+        callback = function()
+            require("love2d-treesitter.util").load(config)
+        end
+    })
 end
 
 function M.autocmdsAutodetect()
