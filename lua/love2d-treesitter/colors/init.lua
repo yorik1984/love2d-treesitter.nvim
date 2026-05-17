@@ -3,7 +3,6 @@ local util = require("love2d-treesitter.colors.util")
 local M = {}
 
 function M.setup(config)
-
     local LOVEColors = {
         LOVElove     = (vim.o.background == "dark") and "#E54D95" or "#E54D95",
         LOVEmodule   = (vim.o.background == "dark") and "#E54D95" or "#E54D95",
@@ -20,6 +19,7 @@ function M.setup(config)
     end
 
     M.colors = LOVEColors
+
     return LOVEColors
 end
 
