@@ -16,6 +16,9 @@ function M.colorOverrides(color, configColors)
     check.keyExistsError(configColors, color, "color", "Use: from love2d-treesitter/colors/init.lua")
 
     for key, value in pairs(configColors) do
+        if type(value) == "function" then
+            value = value()
+        end
         if type(color[key]) == "table" then
             M.colorOverrides(color[key], { color = value })
         else

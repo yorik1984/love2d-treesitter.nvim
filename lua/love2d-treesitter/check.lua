@@ -124,11 +124,12 @@ function M.typeError(userConfig)
     end
 
     local validators = {
-        enable_on_start = "boolean",
-        notifications   = "boolean",
-        style           = "table", -- preset table
-        colors          = "table", -- preset table
-        conceal         = "table", -- preset table
+        enable_on_start    = "boolean",
+        auto_detect_love2d = "boolean",
+        notifications      = "boolean",
+        style              = "table", -- preset table
+        colors             = "table", -- preset table
+        conceal            = "table", -- preset table
     }
 
     local function is_allowed_type_or_value(value, expected)

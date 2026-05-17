@@ -22,14 +22,14 @@ local M = {}
 ---@field conf LoveTreesitterStyleType Style for LÖVE configuration (love.conf)
 
 ---@class LoveTreesitterColors
----@field LOVElove string? HEX color for `love` global variable
----@field LOVEmodule string? HEX color for LÖVE modules
----@field LOVEtype string? HEX color for LÖVE types/objects
----@field LOVEdot string? HEX color for LÖVE dot and colon operator
----@field LOVEfunction string? HEX color for LÖVE functions
----@field LOVEmethod string? HEX color for LÖVE methods
----@field LOVEcallback string? HEX color for LÖVE callbacks
----@field LOVEconf string? HEX color for LÖVE configuration
+---@field LOVElove string|fun():string? HEX color for `love` global variable
+---@field LOVEmodule string|fun():string? HEX color for LÖVE modules
+---@field LOVEtype string|fun():string? HEX color for LÖVE types/objects
+---@field LOVEdot string|fun():string? HEX color for LÖVE dot and colon operator
+---@field LOVEfunction string|fun():string? HEX color for LÖVE functions
+---@field LOVEmethod string|fun():string? HEX color for LÖVE methods
+---@field LOVEcallback string|fun():string? HEX color for LÖVE callbacks
+---@field LOVEconf string|fun():string? HEX color for LÖVE configuration
 
 ---@class LoveTreesitterConfig
 ---@field enable_on_start boolean Whether to enable highlighting automatically on startup
@@ -56,8 +56,8 @@ M.defaults = {
         conf     = "NONE",
     },
     colors             = {
-        LOVElove     = nil, -- Example: "#E54D95"
-        LOVEmodule   = nil,
+        LOVElove     = nil, -- "#E54D95"
+        LOVEmodule   = nil, -- function() return (vim.o.background == "dark") and "#EA70AA" or "#E54D95" end,
         LOVEtype     = nil,
         LOVEdot      = nil,
         LOVEfunction = nil,
@@ -67,7 +67,7 @@ M.defaults = {
     },
     conceal            = {
         love     = false, -- `love = ""` or `love = "🩷"`
-        love_dot = false, -- empty `""`
+        love_dot = false, -- empty `" "`
     },
 }
 
